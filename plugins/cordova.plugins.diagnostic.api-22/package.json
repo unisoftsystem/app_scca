@@ -1,0 +1,102 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova.plugins.diagnostic.api-22@2.3.10-api-22",
+        "scope": null,
+        "escapedName": "cordova.plugins.diagnostic.api-22",
+        "name": "cordova.plugins.diagnostic.api-22",
+        "rawSpec": "2.3.10-api-22",
+        "spec": "2.3.10-api-22",
+        "type": "version"
+      },
+      "C:\\AppServ\\www\\App_s scca\\monitor\\final\\ssca\\node_modules"
+    ]
+  ],
+  "_from": "cordova.plugins.diagnostic.api-22@2.3.10-api-22",
+  "_id": "cordova.plugins.diagnostic.api-22@2.3.10-api-22",
+  "_inCache": true,
+  "_location": "/cordova.plugins.diagnostic.api-22",
+  "_nodeVersion": "4.2.4",
+  "_npmUser": {
+    "name": "davealden",
+    "email": "dave@workingedge.co.uk"
+  },
+  "_npmVersion": "3.5.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova.plugins.diagnostic.api-22@2.3.10-api-22",
+    "scope": null,
+    "escapedName": "cordova.plugins.diagnostic.api-22",
+    "name": "cordova.plugins.diagnostic.api-22",
+    "rawSpec": "2.3.10-api-22",
+    "spec": "2.3.10-api-22",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova.plugins.diagnostic.api-22/-/cordova.plugins.diagnostic.api-22-2.3.10-api-22.tgz",
+  "_shasum": "c077d15a7bbda46d25a7407b749dfa5c6d02f65c",
+  "_shrinkwrap": null,
+  "_spec": "cordova.plugins.diagnostic.api-22@2.3.10-api-22",
+  "_where": "C:\\AppServ\\www\\App_s scca\\monitor\\final\\ssca\\node_modules",
+  "author": {
+    "name": "Dave Alden"
+  },
+  "bugs": {
+    "url": "https://github.com/dpa99c/cordova-diagnostic-plugin/issues"
+  },
+  "cordova": {
+    "id": "cordova.plugins.diagnostic",
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ]
+  },
+  "cordova_name": "Diagnostic",
+  "dependencies": {},
+  "description": "Cordova/Phonegap plugin to check the state of Location/WiFi/Camera/Bluetooth device settings.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "c077d15a7bbda46d25a7407b749dfa5c6d02f65c",
+    "tarball": "https://registry.npmjs.org/cordova.plugins.diagnostic.api-22/-/cordova.plugins.diagnostic.api-22-2.3.10-api-22.tgz"
+  },
+  "gitHead": "3d6a372a4d0e502b56faf5d770c6e2b72b3be69a",
+  "homepage": "https://github.com/dpa99c/cordova-diagnostic-plugin#readme",
+  "issue": "https://github.com/dpa99c/cordova-diagnostic-plugin/issues",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova",
+    "android",
+    "ios",
+    "windows",
+    "phonegap",
+    "diagnostic",
+    "wifi",
+    "location",
+    "gps",
+    "camera",
+    "bluetooth",
+    "settings"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "davealden",
+      "email": "dave@workingedge.co.uk"
+    }
+  ],
+  "name": "cordova.plugins.diagnostic.api-22",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpa99c/cordova-diagnostic-plugin.git"
+  },
+  "scripts": {},
+  "version": "2.3.10-api-22"
+}

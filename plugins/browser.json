@@ -1,0 +1,55 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-request-location-accuracy": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "cordova.plugins.diagnostic.api-22": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.unisoft.scca"
+        }
+    }
+}
