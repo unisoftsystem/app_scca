@@ -1,0 +1,2635 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SSCA MONITOR</title>
+	<link rel="stylesheet" href="themes/SSCA.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.5.min.css" />
+	<link rel="stylesheet" href="themes/alertify.core.css" />
+    <link rel="stylesheet" href="themes/alertify.default.css" />
+    <link href="themes/popup.css" rel="stylesheet"/>
+	
+    <script src="themes/alertify.js"></script>   
+	<script src="themes/jquery-1.11.1.min.js"></script>
+	<script src="themes/jquery.mobile-1.4.5.min.js"></script>
+	<script src="themes/popup.js"></script>
+	<script>
+		function nobackbutton(){
+		   window.location.hash="no-back-button";
+		   window.location.hash="Again-No-back-button" 
+		   window.onhashchange=function(){window.location.hash="no-back-button";} 
+		}
+	</script>
+	<style type="text/css">
+		.content{
+			padding: 0;			
+		}
+		button{
+			background-image: url(themes/images/textura.png);
+			color: #FFF;
+		}
+		.avatar {
+			/* cambia estos dos valores para definir el tamaño de tu círculo */
+			border-radius: 50%;
+			background-size: 100% auto;
+			border:solid #1D5EB9;
+			margin-top:0px;
+			border-width: 2px;
+		}
+		.content{
+			padding: 0;
+			
+		}
+		.contentPage{
+			background-image: url("themes/images/fondo.png");
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+		}
+		.contentOtro{
+			background-color: #FFF;
+		}
+		.divPersona{
+			border:solid; 
+			border-color:#1D5EB9;
+			border-radius:8px;
+			border-width: 2px;
+			margin-left:12px; 
+			margin-right:12px;
+			height:25px; 
+			padding-top:15px;
+			margin-top: 22px;
+		}
+		div.avatar {
+			/* cambia estos dos valores para definir el tamaño de tu círculo */
+			height: 100px;
+			width: 100px;
+			/* los siguientes valores son independientes del tamaño del círculo */
+			background-repeat: no-repeat;
+			background-position: 50%;
+			border-radius: 50%;
+			background-size: 100% auto;
+			float:left; 
+			margin-top:-32px; 
+			margin-left:-5px; 
+			width:50px; 
+			height:50px; 
+			border:solid #1D5EB9;
+			/*background-color: #FFF;*/
+		}
+		.menu{	
+			margin-top:5%;
+			width:250px; 
+			background-color: #667; 
+			opacity:.9; 
+			border-radius:12px; 
+			margin-left: 10px;
+		}
+		.lblMenu{
+			margin-left: 2%;
+			font-size: 14px;
+			vertical-align: top;
+		}
+		.icono{
+			border:#FF0 solid 2px; 
+			border-radius:50%; 
+		}
+		.iconoMensaje{
+			border:#1D5EB9 solid 2px; 
+			border-radius:50%; 
+			float: left;
+		}
+		.font b{
+			margin-left: 10px;
+		}
+
+		.clearFix
+        {
+            clear:both;
+        }
+        .panel.panel-chat
+        {
+            max-width: 100%;
+            width: 100%;
+            box-shadow: none;
+            -webkit-box-shadow: none;            
+        }
+        .panel.panel-chat *
+        {
+            background: none;
+            
+        }
+        .panel.panel-chat .panel-heading
+        {
+            background: #4b67a8;
+            border: 1px solid #2e4588;
+            color:#FFF;
+        }
+        .panel-heading{
+        	padding: 10px 10px 10px 10px;
+        }
+        .panel.panel-chat .panel-heading a:nth-of-type(1)
+        {
+            text-decoration: none;
+            width: 100%;
+            color:#FFF;
+            font-weight: bold;
+            float:left;
+        }
+        .panel.panel-chat .panel-heading a:nth-of-type(2)
+        {
+            text-decoration: none;
+            max-width: 11px;
+            width: 11px;
+            color:#FFF;
+            float:right;
+        }
+        .panel.panel-chat
+        {
+            display: block;
+            padding: 0;
+            margin: 0;
+            border-left: 1px solid #b2b2b2;
+            border-right: 1px solid #b2b2b2;
+            background: #EDEFF4;
+            overflow: auto;
+        }
+        .panel-body
+        {
+            display: block;
+            padding: 0;
+            margin: 0;
+            max-height: 350px;
+            height: 350px;
+            border-left: 1px solid #b2b2b2;
+            border-right: 1px solid #b2b2b2;
+            overflow: auto;
+        }
+       
+        .panel.panel-chat .panel-body .messageMe
+        {
+            border-bottom:1px dotted #b2b2b2;
+             margin-top: 10px;
+        }
+        .panel.panel-chat .panel-body .messageMe img
+         {
+             float:left;
+             width: 50px;             
+            max-height: 50px;
+         }
+        .panel.panel-chat .panel-body .messageMe span
+        {
+            display: block;
+            float:left;
+            padding: 5px;
+            background: #FFF;
+            min-height: 50px;
+            max-width: 90%;
+            height: 50px;
+            width: 100%;
+            word-break: break-all;
+        }
+        .panel.panel-chat .panel-body .messageHer
+        {
+            border-bottom:1px dotted #b2b2b2;
+             margin-top: 10px;
+        }
+        .panel.panel-chat .panel-body .messageHer img
+        {
+            float:right;
+            max-width: 10%;
+             max-height: 50px;
+        }
+        .panel.panel-chat .panel-body .messageHer span
+        {
+            display: block;
+            float:right;
+            padding: 5px;
+            background: #A9D0F5;
+            min-height: 50px;
+            max-width: 90%;
+            width: auto;
+            height: 50px;
+            width: 100%;
+            word-break: break-all;
+        }
+        .panel.panel-chat .panel-footer
+        {
+            padding: 0;
+            margin: 0;
+            border: 1px solid #b2b2b2;
+            max-height: 75px;
+            height: 37px;
+            resize: none;
+        }
+        .panel.panel-chat .panel-footer textarea
+        {
+            margin-bottom: -5px;
+            resize: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .chat-box
+            {
+                width: 100%;
+            }
+
+            .header
+            {
+                padding: 10px;
+                color: white;
+                font-size: 14px;
+                font-weight: bold;
+                background-color: #6d84b4;
+            }
+
+            
+
+            .panel-body ul
+            {
+                padding: 0px;
+                list-style-type: none;
+            }
+
+            .panel-body ul li
+            {
+                height: auto;
+                margin-bottom: 10px;
+                clear: both;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .panel-body ul li img
+            {
+                display: inline-block;
+                max-width: 15%;
+                width: 15%;  
+                float: left;       
+            }
+
+            .panel-body ul li span
+            {
+                display: inline-block;
+                max-width: 80%;
+                background-color: white;
+                padding: 5px;
+                border-radius: 4px;
+                position: relative;
+                border-width: 1px;
+                border-style: solid;
+                border-color: grey;
+                text-align: left;
+            }
+
+            .panel-body ul li span.left
+            {
+                float: left;
+                background-color: #fff;
+                left:10px;
+                top: 6px;
+                bottom: 5px;
+            }
+
+            .panel-body ul li span.left:after
+            {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                left: -8px;
+                top: 6px;
+                height: 0px;
+                width: 0px;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-right: 8px solid #fff;
+            }
+
+            .panel-body ul li span.left:before
+            {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                left: -9px;
+                top: 6px;
+                height: 0px;
+                width: 0px;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-right: 8px solid black;
+            }
+
+            .panel-body ul li span.right:after
+            {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                right: -8px;
+                top: 6px;
+                height: 0px;
+                width: 0px;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-left: 8px solid #dbedfe;
+            }
+
+            .panel-body ul li span.right:before
+            {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                right: -9px;
+                top: 6px;
+                height: 0px;
+                width: 0px;
+                border-top: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-left: 8px solid black;
+            }
+
+            .panel-body ul li span.right
+            {
+                float: right;
+                background-color: #dbedfe;
+                top: 6px;
+            }
+
+            .clear
+            {
+                clear: both;
+            }
+            .ui-page{
+                padding: 0;
+            }
+            .ui-page > .ui-content > a > img{
+                position: absolute; 
+                top: 75; 
+                border: none; 
+                border-radius: 200px; 
+                background: none;
+                right: 20;
+            }
+
+	</style>
+</head>
+<body onload="">
+	<!-- ---------------------- LOGIN O ESCANEAR QR ----------------------- -->
+	<div data-role="page" data-theme="a" id="pageScan">
+		<div data-role="content" data-theme="a" id="contenido" class="content">
+			<img src="themes/images/Imagen.png" width="100%"/>
+			<div class="ui-grid-a" style="width: 100%; float: right; margin-right:15px">
+				<div class="ui-block-a" style="margin-top: 20px" align="right"><font color="#337ab7" style="margin-right: 10px"><b>User</b></font></div>
+				<div class="ui-block-b"><input type="text" name="txtUsuario" id="txtUsuario"></div>
+			</div>
+			<div class="ui-grid-a" style="width: 100%; float: right; margin-right:15px">
+				<div class="ui-block-a" style="margin-top: 20px" align="right"><font color="#337ab7" style="margin-right: 10px"><b>Password</b></font></div>
+				<div class="ui-block-b"><input type="password" name="txtClave" id="txtClave"></div>
+			</div>
+			<div class="ui-grid-a" style="width: 100%; float: right; margin-right:15px">
+				<div class="ui-block-a" style="" align="right"><button type="button" id="btnScanLogin" name="btnScanLogin" class="btn btn-primary" style="margin-right:20px; width:100px"><font color="#FFFFFF"><b>SCAN</b></font></button></div>
+				<div class="ui-block-b"><button type="button" id="btnLogin" name="btnLogin" class="btn btn-primary"><font color="#FFFFFF" disabled><b>INGRESAR</b></font></button></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- ---------------------- LISTADO DE RUTAS ----------------------- -->
+	<div data-role="page" data-theme="a" id="pageListadoRutas">
+		<div data-role="header" style="position: fixed; width: 100%">
+			<fieldset class="ui-grid-a" style="margin-left: 0; ">
+				
+				
+				<div class="ui-block-b" style="width: 100%;" align="center">
+					<img src="themes/images/logo.png" width="76px" style="margin-top: 10px; margin-bottom: 10px">
+				</div>   
+			</fieldset>
+			
+			
+		</div>
+		<div data-role="content" data-theme="a" style="margin-top:40px">
+
+			<div class="divPersona">
+				<div class="avatar" id="fotoHomeListadoRutas"></div>
+				<font class="font">
+					<b id="UsuarioSesionListadoRutas" class="bPersona">Mauricio Gonzales</b>
+				</font>				
+			</div>
+			<h3 style="color: #1D5EB9"><b>Listado de rutas</b></h3>
+			
+			<div style="width: 100%" id="listadoRutas">
+				
+			</div>
+			
+
+			
+		</div>
+		
+	</div>
+
+	<!-- ---------------------- HOME ----------------------- -->
+	<div data-role="page" data-theme="a" id="pageHome">
+		<div data-role="popup" id="myPopuppageHome" class="ui-content" style="z-index: 1; margin-top: 0; left: 0">
+            <ul data-role="listview" style="margin: 0;">
+            </ul>
+            <table width="100%">
+                <tr>
+                    <td width="60%">
+                        <div class="panel panel-chat" style="visibility: hidden;">
+                            <div class="panel-heading" align="center">
+                                <table width="100%">
+                                    <tr>
+                                        <td valign="top" align="left"><img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0"></td>
+                                        <td align="center"><span style="color: #fff"></span></td>
+                                        <td valign="top" align="right"><a href="#" class="chatClose" onclick="return false" style="float: right;right: 0; color: #FFF;"><img src="themes/images/cancel.png" width="20px"></a></td>
+                                    </tr>
+                                </table>        
+                            </div>
+                            <div class="panel-body" style="height: 400px">                    
+                                <br>
+                                <ul>                                   
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+
+                            <table width="100%" cellpadding="0" cellpadding="0">
+                                <tr>
+                                    <td width="95%"><input name="textMessagepageHome" id="textMessagepageHome" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+                                    <td width="5%">
+                                        <button type="button" class="btnEnviar" name="btnEnviarpageHome" id="btnEnviarpageHome" style="background-color: #337ab7;
+                                            border-color: #2e6da4;display: inline-block;
+                                            padding: 6px 12px;
+                                            margin-bottom: 0;
+                                            color: #FFF;
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.42857143;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: middle;
+                                            -ms-touch-action: manipulation;
+                                            touch-action: manipulation;
+                                            cursor: pointer;
+                                            -webkit-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            user-select: none;
+                                            background-image: none;
+                                            border: 1px solid transparent;
+                                            float: right;
+                                            border-radius: 4px">&gt;</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>        
+        </div>
+
+        
+		<div data-role="content" data-theme="a" class="content contentPage">
+            <a href="#myPopuppageHome" data-rel="popup" data-position-to="origin" aria-haspopup="true" aria-owns="pageChat" aria-expanded="false" class="ui-link">
+                <img src="themes/images/BTN Nuestro Chat.png" width="55">
+                <!--<span style="top: 55; position: absolute; left: 66; color: orange">1</span>-->
+            </a>
+			<!--<a href="#pageChat" data-rel="popup"><img src="themes/images/BTN Nuestro Chat.png" alt="" style="position: absolute; top: 0;border: 1px solid #000" width="48" id="btnEjemplo" /></a>-->
+			<img src="themes/images/logo.png" width="140" height="50" style="margin-left:10px; margin-top:10px"/>
+			<div class="divPersona">
+				<div class="avatar" id="fotoHome"></div>
+				<font class="font">
+					<b id="UsuarioSesionHome" class="bPersona">Mauricio Gonzales</b>
+				</font>				
+			</div>
+
+			<div class="menu">
+				<div class="ui-grid-a" style="width: 100%;" id="OpcionIngreso">
+					<div class="ui-block-a" style="width: 97%; margin-top: 5%; margin-left: 3%; margin-bottom: 2%">
+						<img src="themes/images/BTN Registro de Entrada app monitor.png" width="50" style="float:left" class="icono" />
+						<img src="themes/images/txt Regsitro de Entrada.png" width="170" style="float:left; margin-top: 7%; margin-left: 5px" />
+					</div><br>				
+					<hr width="90%" color="#FFF" size="1"/>
+				</div>
+				
+				<div class="ui-grid-a" style="width: 100%;" id="OpcionSalida">
+					<div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+						<img src="themes/images/BTN Registro de salida.png" width="50" style="float:left" class="icono" />
+                        <img src="themes/images/txt registro de salida.png" width="155" style="float:left; margin-top: 7%; margin-left: 5px" />
+					</div><br>				
+					<hr width="90%" color="#FFF" size="1"/>
+				</div>
+
+                <div class="ui-grid-a" style="width: 100%;" id="OpcionAlertas">
+                    <div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+                        <img src="themes/images/BTN app Monitor Alertas de Recorrido.png" width="50" style="float:left" class="icono" />
+                        <img src="themes/images/App Monitor txt Alertas de Recorrido.png" width="180" style="float:left; margin-top: 7%; margin-left: 0px" />
+                    </div><br>              
+                    <hr width="90%" color="#FFF" size="1"/>
+                </div>
+
+                <div class="ui-grid-a" style="width: 100%;" id="OpcionTracking">
+                    <div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+                        <img src="themes/images/App Monitor BTN Tracking.png" width="50" style="float:left" class="icono" />
+                        <img src="themes/images/App Monitor txt Tracking.png" width="130" style="float:left; margin-top: 6%; margin-left: 5px" />
+                    </div><br>              
+                    <hr width="90%" color="#FFF" size="1"/>
+                </div>
+
+				<div class="ui-grid-a" style="width: 100%;" id="OpcionEnvioMensajes">
+					<div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+						<img src="themes/images/BTN Mensajeria App Monitor.png" width="50" style="float:left" class="icono" />
+                        <img src="themes/images/txt Envio de Msj app monitor.png" width="160" style="float:left; margin-top: 7%; margin-left: 5px" />
+					</div><br>				
+					<hr width="90%" color="#FFF" size="1"/>
+				</div>
+
+				<div class="ui-grid-a" style="width: 100%;" id="OpcionLista">
+					<div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+						<img src="themes/images/BTN Lista de Integarntes app monitor.png" width="50" style="float:left" class="icono" />
+                        <img src="themes/images/txt lista de integrantes app monitor.png" width="165" style="float:left; margin-top: 7%; margin-left: 5px" />
+					</div><br>				
+					<hr width="90%" color="#FFF" size="1"/>
+				</div>
+
+				<div class="ui-grid-a" style="width: 100%;" id="OpcionChatAcudiente">
+					<div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+						<img src="themes/images/BTN Chat Acudientes.png" width="50" style="float:left" class="icono" />
+                        <img src="themes/images/txt chat acudientes.png" width="160" style="float:left; margin-top: 7%; margin-left: 5px" />
+					</div><br>				
+					<hr width="90%" color="#FFF" size="1"/>
+				</div>
+
+				<div class="ui-grid-a" style="width: 100%;" id="OpcionChatCentro">
+					<div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+						<img src="themes/images/BTN Chat CO App Monitor.png" width="50" style="float:left" class="icono" />
+                        <img src="themes/images/txt chat centro OP.png" width="160" style="float:left; margin-top: 7%; margin-left: 5px" />
+					</div><br>				
+					<hr width="90%" color="#FFF" size="1"/>
+				</div>
+
+				<div class="ui-grid-a" style="width: 100%;" id="OpcionCerrarSesion">
+					<div class="ui-block-a" style="width: 97%; margin-left: 3%; margin-bottom: 2%">
+						<img src="themes/images/exit.png" width="19%" style="float:left" class="icono" />
+						<img src="themes/images/cerrar_sesion.png" width="140" style="float:left; margin-top: 7%; margin-left: 5px" />
+					</div><br>				
+					<hr width="90%" color="#FFF" size="1"/>
+				</div>
+				<br><br>
+			</div><br><br>
+		</div>
+	</div>
+
+
+	<!--<div id="popupMensaje" style="display: none">
+        <div class="content-popup" style="width:90%;border:#009 solid 1px; padding: 0;">
+            
+            <div class="panel panel-chat">
+                <div class="panel-heading" align="center">
+                    <table width="100%">
+                        <tr>
+                            <td valign="top" align="left"><img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0"></td>
+                            <td align="center"><span style="color: #fff"></span></td>
+                            <td valign="top" align="right"><a href="#" class="chatClose" onclick="return false" style="float: right;right: 0; color: #FFF;"><img src="themes/images/cancel.png" width="20px"></a></td>
+                        </tr>
+                    </table>
+                    
+                         
+                    
+                </div>
+                <div class="panel-body" style="height: 400px">                    
+                    <br>
+                    <ul>                                   
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+
+                <table width="100%" cellpadding="0" cellpadding="0">
+                    <tr>
+                        <td width="95%"><input name="textMessage" id="textMessage" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+                        <td width="5%">
+                            <button type="button" name="btnEnviar" id="btnEnviar" style="background-color: #337ab7;
+                                border-color: #2e6da4;display: inline-block;
+                                padding: 6px 12px;
+                                margin-bottom: 0;
+                                color: #FFF;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 1.42857143;
+                                text-align: center;
+                                white-space: nowrap;
+                                vertical-align: middle;
+                                -ms-touch-action: manipulation;
+                                touch-action: manipulation;
+                                cursor: pointer;
+                                -webkit-user-select: none;
+                                -moz-user-select: none;
+                                -ms-user-select: none;
+                                user-select: none;
+                                background-image: none;
+                                border: 1px solid transparent;
+                                float: right;
+                                border-radius: 4px">&gt;</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+    </div>-->
+
+    <!-- ---------------------- ALERTAS ----------------------- -->
+    <div data-role="page" data-theme="a" id="pageAlertas">
+        <div data-role="popup" id="myPopuppageAlertas" class="ui-content" style="z-index: 1; margin-top: 0; left: 0">
+            <ul data-role="listview" style="margin: 0;">
+            </ul>
+            <table width="100%">
+                <tr>
+                    <td width="60%">
+                        <div class="panel panel-chat" style="visibility: hidden;">
+                            <div class="panel-heading" align="center">
+                                <table width="100%">
+                                    <tr>
+                                        <td valign="top" align="left"><img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0"></td>
+                                        <td align="center"><span style="color: #fff"></span></td>
+                                        <td valign="top" align="right"><a href="#" class="chatClose" onclick="return false" style="float: right;right: 0; color: #FFF;"><img src="themes/images/cancel.png" width="20px"></a></td>
+                                    </tr>
+                                </table>        
+                            </div>
+                            <div class="panel-body" style="height: 400px">                    
+                                <br>
+                                <ul>                                   
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+
+                            <table width="100%" cellpadding="0" cellpadding="0">
+                                <tr>
+                                    <td width="95%"><input name="textMessagepageAlertas" id="textMessagepageAlertas" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+                                    <td width="5%">
+                                        <button type="button" class="btnEnviar" name="btnEnviarpageAlertas" id="btnEnviarpageAlertas" style="background-color: #337ab7;
+                                            border-color: #2e6da4;display: inline-block;
+                                            padding: 6px 12px;
+                                            margin-bottom: 0;
+                                            color: #FFF;
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.42857143;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: middle;
+                                            -ms-touch-action: manipulation;
+                                            touch-action: manipulation;
+                                            cursor: pointer;
+                                            -webkit-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            user-select: none;
+                                            background-image: none;
+                                            border: 1px solid transparent;
+                                            float: right;
+                                            border-radius: 4px">&gt;</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>        
+        </div>
+        <div data-role="header" style="position: fixed; width: 100%">
+            <fieldset class="ui-grid-a" style="margin-left: 0; ">
+                <div class="ui-block-a" style="width: 15%">
+                    <a href="#pageHome" data-role="button" data-icon="home" data-iconpos="notext" style="margin-top: 10px" id="opcionAtrasHome">Atras</a>
+                </div>
+                
+                <div class="ui-block-b" style="width: 80%;" align="right">
+                    <img src="themes/images/logo.png" width="76px" style="margin-top: 10px; ">
+                </div>   
+            </fieldset>
+            
+            
+        </div>
+        <div data-role="content" data-theme="a" style="margin-top:40px">        
+            <a href="#myPopuppageAlertas" data-rel="popup" data-position-to="origin" aria-haspopup="true" aria-owns="pageChat" aria-expanded="false" class="ui-link">
+                <img src="themes/images/BTN Nuestro Chat.png" width="55">
+                <!--<span style="top: 55; position: absolute; left: 66; color: orange">1</span>-->
+            </a> 
+            <div class="divPersona">
+                <div class="avatar" id="fotoAlertas"></div>
+                <font class="font">
+                    <b id="UsuarioSesionAlertas" class="bPersona">Mauricio Gonzales</b>
+                </font>             
+            </div>
+            <h3 style="color: #1D5EB9" align="center">ALERTAS EN RECORRIDO</h3><br>
+            <div style="width: 100%; float:left; opacity: 1" class="OpcionAlertas" bloqueado="no" id="">
+                <img src="themes/images/App Monitor BTN Alerta Trafico Lento.png" width="30%" class="iconoMensaje" style="border: none">
+                <font color="#1D5EB9" style="margin-top:15%; margin-left: 5px; float: left; font-size: 1em"><b>TRÁFICO LENTO</b></font>
+                <hr width="65%" color="#1D5EB9" size="1" style="margin-top:3%; margin-left: -15px; float: left;" />
+            </div>
+
+            <div style="width: 100%; float:left; opacity: 1" class="OpcionAlertas" bloqueado="no" id="">
+                <img src="themes/images/App Monitor BTN Alerta Dano Neumatico.png" width="30%" class="iconoMensaje" style="border: none">
+                <font color="#1D5EB9" style="margin-top:15%; margin-left: 5px; float: left; font-size: 1em"><b>DAÑO DE NEUMATICO</b></font>
+                <hr width="65%" color="#1D5EB9" size="1" style="margin-top:3%; margin-left: -15px; float: left;" />
+            </div>
+            
+            <div style="width: 100%; float:left; opacity: 1" class="OpcionAlertas" bloqueado="no" id="">
+                <img src="themes/images/App Monitor BTN Alerta Falla Mecanica.png" width="30%" class="iconoMensaje" style="border: none">
+                <font color="#1D5EB9" style="margin-top:15%; margin-left: 5px; float: left; font-size: 1em"><b>INCIDENTE MECANICO</b></font>
+                <hr width="65%" color="#1D5EB9" size="1" style="margin-top:3%; margin-left: -15px; float: left;" />
+            </div>
+            
+            <div style="width: 100%; float:left; opacity: 1" class="OpcionAlertas" bloqueado="no" id="">
+                <img src="themes/images/App Monitor BTN Alerta Accidente.png" width="30%" class="iconoMensaje" style="border: none">
+                <font color="#1D5EB9" style="margin-top:15%; margin-left: 5px; float: left; font-size: 1em"><b>ALERTA DE ACCIDENTE</b></font>
+                <hr width="65%" color="#1D5EB9" size="1" style="margin-top:3%; margin-left: -15px; float: left;" />
+            </div>
+            
+            
+            
+        </div>
+    </div>
+
+    <!-- ---------------------- ALERTAS ----------------------- -->
+    <div data-role="page" data-theme="a" id="pageTracking">
+        <div data-role="popup" id="myPopuppageTracking" class="ui-content" style="z-index: 1; margin-top: 0; left: 0">
+            <ul data-role="listview" style="margin: 0;">
+            </ul>
+            <table width="100%">
+                <tr>
+                    <td width="60%">
+                        <div class="panel panel-chat" style="visibility: hidden;">
+                            <div class="panel-heading" align="center">
+                                <table width="100%">
+                                    <tr>
+                                        <td valign="top" align="left"><img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0"></td>
+                                        <td align="center"><span style="color: #fff"></span></td>
+                                        <td valign="top" align="right"><a href="#" class="chatClose" onclick="return false" style="float: right;right: 0; color: #FFF;"><img src="themes/images/cancel.png" width="20px"></a></td>
+                                    </tr>
+                                </table>        
+                            </div>
+                            <div class="panel-body" style="height: 400px">                    
+                                <br>
+                                <ul>                                   
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+
+                            <table width="100%" cellpadding="0" cellpadding="0">
+                                <tr>
+                                    <td width="95%"><input name="textMessagepageTracking" id="textMessagepageTracking" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+                                    <td width="5%">
+                                        <button type="button" class="btnEnviar" name="btnEnviarpageAlertas" id="btnEnviarpageTracking" style="background-color: #337ab7;
+                                            border-color: #2e6da4;display: inline-block;
+                                            padding: 6px 12px;
+                                            margin-bottom: 0;
+                                            color: #FFF;
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.42857143;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: middle;
+                                            -ms-touch-action: manipulation;
+                                            touch-action: manipulation;
+                                            cursor: pointer;
+                                            -webkit-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            user-select: none;
+                                            background-image: none;
+                                            border: 1px solid transparent;
+                                            float: right;
+                                            border-radius: 4px">&gt;</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>        
+        </div>
+        <div data-role="header" style="position: fixed; width: 100%">
+            <fieldset class="ui-grid-a" style="margin-left: 0; ">
+                <div class="ui-block-a" style="width: 15%">
+                    <a href="#pageHome" data-role="button" data-icon="home" data-iconpos="notext" style="margin-top: 10px" id="opcionAtrasHome">Atras</a>
+                </div>
+                
+                <div class="ui-block-b" style="width: 80%;" align="right">
+                    <img src="themes/images/logo.png" width="76px" style="margin-top: 10px; ">
+                </div>   
+            </fieldset>
+            
+            
+        </div>
+        <div data-role="content" data-theme="a" style="margin-top:40px">        
+            <a href="#myPopuppageTracking" data-rel="popup" data-position-to="origin" aria-haspopup="true" aria-owns="pageChat" aria-expanded="false" class="ui-link">
+                <img src="themes/images/BTN Nuestro Chat.png" width="55">
+                <!--<span style="top: 55; position: absolute; left: 66; color: orange">1</span>-->
+            </a> 
+            
+            <div id="map_canvas" style="width:100%;height:400px;"></div>       
+            <img src="" id="imagen">
+            
+            
+            
+            
+        </div>
+    </div>
+	
+
+	<!-- ---------------------- ENVIO DE MENSAJES ----------------------- -->
+	<div data-role="page" data-theme="a" id="pageEnvioMensajes">
+        <div data-role="popup" id="myPopuppageEnvioMensajes" class="ui-content" style="z-index: 1; margin-top: 0; left: 0">
+            <ul data-role="listview" style="margin: 0;">
+            </ul>
+            <table width="100%">
+                <tr>
+                    <td width="60%">
+                        <div class="panel panel-chat" style="visibility: hidden;">
+                            <div class="panel-heading" align="center">
+                                <table width="100%">
+                                    <tr>
+                                        <td valign="top" align="left"><img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0"></td>
+                                        <td align="center"><span style="color: #fff"></span></td>
+                                        <td valign="top" align="right"><a href="#" class="chatClose" onclick="return false" style="float: right;right: 0; color: #FFF;"><img src="themes/images/cancel.png" width="20px"></a></td>
+                                    </tr>
+                                </table>        
+                            </div>
+                            <div class="panel-body" style="height: 400px">                    
+                                <br>
+                                <ul>                                   
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+
+                            <table width="100%" cellpadding="0" cellpadding="0">
+                                <tr>
+                                    <td width="95%"><input name="textMessagepageEnvioMensajes" id="textMessagepageEnvioMensajes" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+                                    <td width="5%">
+                                        <button type="button" class="btnEnviar" name="btnEnviarpageEnvioMensajes" id="btnEnviarpageEnvioMensajes" style="background-color: #337ab7;
+                                            border-color: #2e6da4;display: inline-block;
+                                            padding: 6px 12px;
+                                            margin-bottom: 0;
+                                            color: #FFF;
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.42857143;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: middle;
+                                            -ms-touch-action: manipulation;
+                                            touch-action: manipulation;
+                                            cursor: pointer;
+                                            -webkit-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            user-select: none;
+                                            background-image: none;
+                                            border: 1px solid transparent;
+                                            float: right;
+                                            border-radius: 4px">&gt;</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>        
+        </div>
+		<div data-role="header" style="position: fixed; width: 100%">
+			<fieldset class="ui-grid-a" style="margin-left: 0; ">
+				<div class="ui-block-a" style="width: 15%">
+					<a href="#pageHome" data-role="button" data-icon="home" data-iconpos="notext" style="margin-top: 10px" id="opcionAtrasHome">Atras</a>
+				</div>
+				
+				<div class="ui-block-b" style="width: 80%;" align="right">
+					<img src="themes/images/logo.png" width="76px" style="margin-top: 10px; ">
+				</div>   
+			</fieldset>
+			
+			
+		</div>
+		<div data-role="content" data-theme="a" style="margin-top:40px">		
+			<a href="#myPopuppageEnvioMensajes" data-rel="popup" data-position-to="origin" aria-haspopup="true" aria-owns="pageChat" aria-expanded="false" class="ui-link">
+                <img src="themes/images/BTN Nuestro Chat.png" width="55">
+                <!--<span style="top: 55; position: absolute; left: 66; color: orange">1</span>-->
+            </a> 
+			<div class="divPersona">
+				<div class="avatar" id="fotoEnvioMensajes"></div>
+				<font class="font">
+					<b id="UsuarioSesionEnvioMensajes" class="bPersona">Mauricio Gonzales</b>
+				</font>				
+			</div>
+			<div class="ui-grid-a" style="width: 100%; margin-top:17px">
+				<div class="ui-block-a" style="width: 100%">					
+			        <font color="#1D5EB9" style="font-size: 14px"><b>Enviar Mensaje a:</b></font>
+			        <select id="selectEstudiante" name="selectEstudiante">
+						<option value="Seleccione" selected="selected">Seleccione...</option>
+			        </select>			      	
+				</div>	
+			</div><br><br>
+
+			<div style="width: 100%; float:left; opacity: 0.6" class="opcionEnvioMensajes" bloqueado="si" id="opcionLlegado">
+				<img src="themes/images/pto encuentro.jpg" width="30%" class="iconoMensaje">
+				<font color="#1D5EB9" style="margin-top:15%; margin-left: 5px; float: left; font-size: 0.8em"><b>Ruta ha llegado</b></font>
+				<hr width="65%" color="#1D5EB9" size="1" style="margin-top:0%; margin-left: -5px; float: left;" />
+			</div>
+
+			<div style="width: 90%; float:right; margin-top: 35px; opacity: 0.6" class="opcionEnvioMensajes" bloqueado="si" id="opcionEspera">
+				<img src="themes/images/espera.png" width="30%" class="iconoMensaje">
+				<font color="#1D5EB9" style="margin-top:15%; margin-left: 5px; float: left; font-size: 0.8em"><b>Te estamos esperando</b></font>
+				<hr width="69%" color="#1D5EB9" size="1" style="margin-top:0%; margin-left: -5px; float: left;" />
+			</div>
+			
+			<div style="width: 90%; float:right; margin-top: 35px; margin-right: 15px; opacity: 0.6" align="right" class="opcionEnvioMensajes" bloqueado="si" id="opcionPartido">
+				<img src="themes/images/TIME OUT.png" width="30%" style="float:right;border:#F00 solid 2px; border-radius:50%; ">
+				<font color="#1D5EB9" style="margin-top:15%; margin-right: 5px; float: right; font-size: 0.8em"><b>Ruta ha partido</b></font>
+				<hr width="63%" color="#1D5EB9" size="1" style="margin-top:0%; margin-right: -5px; float: right;" />
+			</div>
+			
+			
+		</div>
+	</div>
+
+	<!-- ---------------------- LISTADO DE ESTUDIANTES DE LA RUTA ----------------------- -->
+	<div data-role="page" data-theme="a" id="pageListado">
+        <div data-role="popup" id="myPopuppageListado" class="ui-content" style="z-index: 1; margin-top: 0; left: 0">
+            <ul data-role="listview" style="margin: 0;">
+            </ul>
+            <table width="100%">
+                <tr>
+                    <td width="60%">
+                        <div class="panel panel-chat" style="visibility: hidden;">
+                            <div class="panel-heading" align="center">
+                                <table width="100%">
+                                    <tr>
+                                        <td valign="top" align="left"><img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0"></td>
+                                        <td align="center"><span style="color: #fff"></span></td>
+                                        <td valign="top" align="right"><a href="#" class="chatClose" onclick="return false" style="float: right;right: 0; color: #FFF;"><img src="themes/images/cancel.png" width="20px"></a></td>
+                                    </tr>
+                                </table>        
+                            </div>
+                            <div class="panel-body" style="height: 400px">                    
+                                <br>
+                                <ul>                                   
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+
+                            <table width="100%" cellpadding="0" cellpadding="0">
+                                <tr>
+                                    <td width="95%"><input name="textMessagepageListado" id="textMessagepageListado" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+                                    <td width="5%">
+                                        <button type="button" class="btnEnviar" name="btnEnviarpageListado" id="btnEnviarpageListado" style="background-color: #337ab7;
+                                            border-color: #2e6da4;display: inline-block;
+                                            padding: 6px 12px;
+                                            margin-bottom: 0;
+                                            color: #FFF;
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.42857143;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: middle;
+                                            -ms-touch-action: manipulation;
+                                            touch-action: manipulation;
+                                            cursor: pointer;
+                                            -webkit-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            user-select: none;
+                                            background-image: none;
+                                            border: 1px solid transparent;
+                                            float: right;
+                                            border-radius: 4px">&gt;</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>        
+        </div>
+		<div data-role="header" style="position: fixed; width: 100%">
+			<fieldset class="ui-grid-a" style="margin-left: 0; ">
+				<div class="ui-block-a" style="width: 15%">
+					<a href="#pageHome" data-role="button" data-icon="home" data-iconpos="notext" style="margin-top: 10px" id="opcionAtrasHome">Atras</a>
+				</div>
+				
+				<div class="ui-block-b" style="width: 80%;" align="right">
+					<img src="themes/images/logo.png" width="76px" style="margin-top: 10px; ">
+				</div>   
+			</fieldset>
+			
+			
+		</div>
+
+		<div data-role="content" data-theme="a" style="margin-top:40px">
+            <a href="#myPopuppageListado" data-rel="popup" data-position-to="origin" aria-haspopup="true" aria-owns="pageChat" aria-expanded="false" class="ui-link">
+                <img src="themes/images/BTN Nuestro Chat.png" width="55">
+                <!--<span style="top: 55; position: absolute; left: 66; color: orange">1</span>-->
+            </a> 
+			<div class="divPersona">
+				<div class="avatar" id="fotoListadoEstudiantes"></div>
+				<font class="font">
+					<b id="UsuarioSesionListaEstudiantes" class="bPersona">Mauricio Gonzales</b>
+				</font>				
+			</div>
+			<h3 style="color: #1D5EB9"><b>LISTADO DE ESTUDIANTES DE LA RUTA</b></h3>
+			
+			<div style="width:100%" id="listadoEstudiantes">
+				
+			</div>
+			
+		</div>
+		
+	</div>
+
+	<!--    PAGINA TRACKING -->
+    <div data-role="page" data-theme="a" id="pageChatAcudiente">
+        <div data-role="popup" id="myPopuppageChatAcudiente" class="ui-content" style="z-index: 1; margin-top: 0; left: 0">
+            <ul data-role="listview" style="margin: 0;">
+            </ul>
+            <table width="100%">
+                <tr>
+                    <td width="60%">
+                        <div class="panel panel-chat" style="visibility: hidden;">
+                            <div class="panel-heading" align="center">
+                                <table width="100%">
+                                    <tr>
+                                        <td valign="top" align="left"><img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0"></td>
+                                        <td align="center"><span style="color: #fff"></span></td>
+                                        <td valign="top" align="right"><a href="#" class="chatClose" onclick="return false" style="float: right;right: 0; color: #FFF;"><img src="themes/images/cancel.png" width="20px"></a></td>
+                                    </tr>
+                                </table>        
+                            </div>
+                            <div class="panel-body" style="height: 400px">                    
+                                <br>
+                                <ul>                                   
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+
+                            <table width="100%" cellpadding="0" cellpadding="0">
+                                <tr>
+                                    <td width="95%"><input name="textMessagepageChatAcudiente" id="textMessagepageChatAcudiente" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+                                    <td width="5%">
+                                        <button type="button" class="btnEnviar" name="btnEnviarpageChatAcudiente" id="btnEnviarpageChatAcudiente" style="background-color: #337ab7;
+                                            border-color: #2e6da4;display: inline-block;
+                                            padding: 6px 12px;
+                                            margin-bottom: 0;
+                                            color: #FFF;
+                                            font-size: 14px;
+                                            font-weight: 400;
+                                            line-height: 1.42857143;
+                                            text-align: center;
+                                            white-space: nowrap;
+                                            vertical-align: middle;
+                                            -ms-touch-action: manipulation;
+                                            touch-action: manipulation;
+                                            cursor: pointer;
+                                            -webkit-user-select: none;
+                                            -moz-user-select: none;
+                                            -ms-user-select: none;
+                                            user-select: none;
+                                            background-image: none;
+                                            border: 1px solid transparent;
+                                            float: right;
+                                            border-radius: 4px">&gt;</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>        
+        </div>
+        <div data-role="header" data-position="inline">
+            <a href="#pageHome" data-icon="home" data-iconpos="notext" id="btnHome"></a>
+        </div>
+        <div data-role="content" data-theme="a">
+            <a href="#myPopuppageChatAcudiente" data-rel="popup" data-position-to="origin" aria-haspopup="true" aria-owns="pageChat" aria-expanded="false" class="ui-link">
+                <img src="themes/images/BTN Nuestro Chat.png" width="55">
+                <!--<span style="top: 55; position: absolute; left: 66; color: orange">1</span>-->
+            </a>
+            <table width="100%">
+                <tr>
+                    <td width="35%"><img src="themes/images/BTN Nuestro Chat.png" width="100%"></td>
+                    <td><b>NUESTRO CHAT</b></td>
+                </tr>   
+            </table> 
+            
+            <label><font color="#09C" size="2">Seleccione el estudiante</font></label>
+            <select class="form-control" name="estudianteChatAcudiente" id="estudianteChatAcudiente" ></select>
+
+            <button type="button" id="btnSeleccionarAcudiente" style="color: #fff; background-color: #337ab7;
+                border-color: #2e6da4;display: inline-block;
+                padding: 6px 12px;
+                margin-bottom: 0;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 1.42857143;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                -ms-touch-action: manipulation;
+                touch-action: manipulation;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-image: none;
+                border: 1px solid transparent;
+                float: right;
+                border-radius: 4px;display:none">SELECCIONAR</button>
+                    
+            <img src="themes/images/Logo Ssca.png" width="30%" style="float: right">
+        </div>
+    </div>
+
+	<!--	PAGINA CHAT	-->
+	<!--<div data-role="page" data-theme="a" id="pageChatAcudiente">
+		<div data-role="header" data-position="inline">
+			<a href="#pageHome" data-icon="home" data-iconpos="notext" id="btnHome"></a>
+		</div>
+		<div data-role="content" data-theme="a">
+			
+			<table width="100%">
+				<tr>
+					<td width="35%"><img src="themes/images/BTN Nuestro Chat.png" width="100%"></td>
+					<td><b>NUESTRO CHAT</b></td>
+				</tr>	
+			</table> 
+			
+			<div class="container">
+		        <div class="row" align="center">
+		            <div class="panel panel-chat">
+		                <div class="panel-heading" align="center">
+		                    <img src="themes/images/circle_green_16_ns.png" style="float: left; margin-left: 0">
+		                    <span>MONITOR RUTA ESCOLAR (SHELVIN BATISTA BATISTA)</span>                    
+		                </div>
+		                <div class="panel-body">                    
+		                    <br>
+		                        <ul>		                           
+		                        </ul>
+		                        <div class="clear"></div>
+		                    
+		                    
+		                </div>
+
+		                <table width="100%" cellpadding="0" cellpadding="0">
+	                        <tr>
+	                            <td width="95%"><input name="textMessage" id="textMessage" cols="0" rows="0" onkeypress="validar(event)" style="" /></td>
+	                            <td width="5%"><button style="" data-inline="true" data-mini="true" id="btnEnviar">></button></td>
+	                        </tr>
+	                    </table>
+		            </div>
+		        </div>
+		    </div>
+
+			
+
+			<img src="themes/images/Logo Ssca.png" width="30%" style="float: right">
+		</div>
+	</div>-->
+
+	<div data-role="page" data-dialog="true" id="pagetwo">	
+		<div data-role="header">
+    		<h1>Mensaje</h1>
+	  	</div>
+		<div data-role="main" class="ui-content">
+
+		    <div style="width:100%" id="listadoMensajesUsuario">
+            	
+            </div><br>
+            <a href="#" data-rel="back" style="text-decoration: none"><button class="btn btn-success" style="margin-top:0px" id="btnCancelar" name="btnCancelar"><font color="#FFF">CERRAR</font></button></a>
+	  	</div>
+
+		  
+	</div>
+	<!-- <script type="text/javascript" src="cordova.js"></script> -->
+	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" src="barcodescanner.js"></script>
+	<script type="text/javascript" src="PushNotification.js"></script>
+	<script type="text/javascript" src="js/push.js"></script>
+	<script type="text/javascript" src="themes/socket.io.js"></script>
+	<script type="text/javascript" src="themes/opciones.js"></script>
+	<script type="text/javascript" src="themes/chat.js"></script>
+	<script type="text/javascript" src="themes/index.js"></script>
+   	<script type="text/javascript">
+		app.initialize();
+
+		var watchID = null;
+		var interval;
+		function onPause() {
+			if(localStorage.getItem("idrutaMonitor")){
+			    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			   	var options = { frequency: 500, enableHighAccuracy: true };
+			   	watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+		   	}
+	  	}
+	  	
+	    $(document).ready(function() {
+	    	document.addEventListener("backbutton", function(){}, false);
+			document.addEventListener("pause", onPause, false);
+
+            //setTimeout(function(){ alert("Hello"); }, 3000);
+			// Android customization
+		    /*cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
+		    // Enable background mode
+		    cordova.plugins.backgroundMode.enable();
+		    // Called when background mode has been activated
+		    cordova.plugins.backgroundMode.onactivate = function () {
+		    	if(localStorage.getItem("idrutaMonitor")){
+			        cordova.plugins.backgroundMode.setDefaults({
+		       		 	title:  "Aplicacion en segundo plano",
+					    text:'Aplicacion'
+		            });
+		            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+				   	var options = { frequency: 500, enableHighAccuracy: true };
+				   	watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+			    }
+		    }*/
+
+		    // Called when background mode has been activated
+		    /*cordova.plugins.backgroundMode.ondeactivate  = function () {
+		    	//if(localStorage.getItem("idrutaMonitor") != null && localStorage.getItem("idrutaMonitor") != ""){
+			        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+				   	var options = { frequency: 500, enableHighAccuracy: true };
+				   	watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+		        	
+			        cordova.plugins.backgroundMode.configure({
+		       		 	title:  "unning in background",
+					    text:'Running in background'
+		            });
+			    //}
+		    }*/
+
+        	var screenWidth = $(window).width();
+			var screenHeight = $(window).height();
+			var dimension = screenWidth + "px " + screenHeight + "px";
+			var height = screenHeight + "px";
+			
+			$( ".content" ).css({
+			  "background-size": dimension, "height": height
+			});
+			$(window).bind("resize", function() {
+				// Y tambien cada vez que se redimensione el navegador
+				var screenWidth = $(window).width();
+				var screenHeight = $(window).height();
+				var dimension = screenWidth + "px " + screenHeight + "px";
+				var height = screenHeight + "px";
+				$( ".content" ).css({
+				  "background-size": dimension, "height": height
+				});
+                $.mobile.loading( "hide" );
+			});
+			if(localStorage.getItem("idrutaMonitor")){
+				var monitor = localStorage.getItem("nombreMonitor") + " " + localStorage.getItem("apellidoMonitor");  
+
+				$("#UsuarioSesionListadoRutas").html(monitor)
+				$("#UsuarioSesionHome").html(monitor)
+                $("#UsuarioSesionAlertas").html(monitor)
+				$("#UsuarioSesionListaEstudiantes").html(monitor)
+				$("#UsuarioSesionEnvioMensajes").html(monitor)
+				var foto = "http://190.60.211.17//Fontan/" + localStorage.getItem("ImagenFotograficaMonitor");
+				$("#fotoHome").css({"background-image": "url(" + foto + ")"})
+				$("#fotoListadoEstudiantes").css({"background-image": "url(" + foto + ")"})
+				$("#fotoEnvioMensajes").css({"background-image": "url(" + foto + ")"})
+				$("#fotoHomeListadoRutas").css({"background-image": "url(" + foto + ")"})
+                $("#fotoAlertas").css({"background-image": "url(" + foto + ")"})
+
+				jQuery.mobile.changePage("#pageHome");
+
+				var options = { frequency: 300, enableHighAccuracy: true };
+				navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+			   	
+	        	watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+
+
+			}else{
+				jQuery.mobile.changePage("#pageScan");
+			}
+
+
+			
+		});
+		
+		$("#OpcionIngreso").click(function(e){
+			Escanear("RECOGIDA")			
+			/*localStorage.setItem("opcion","RECOGIDA");
+			localStorage.setItem("idCredencialSeleccionada","6fe1a9e6-75db-11e6-b665-003067d17d8f");
+			navigator.geolocation.getCurrentPosition(onSuccessScan, onError);		*/
+		});
+
+		$("#OpcionSalida").click(function(e){
+			Escanear("BAJADA")		
+			/*localStorage.setItem("opcion","BAJADA");
+			localStorage.setItem("idCredencialSeleccionada","6fe1a9e6-75db-11e6-b665-003067d17d8f");
+			navigator.geolocation.getCurrentPosition(onSuccessScan, onError);		*/
+
+		});
+
+		function Escanear(opcion){
+			localStorage.setItem("opcion",opcion);
+
+            cordova.plugins.barcodeScanner.scan(
+                function (result) {
+                    if(result.cancelled != true){
+                        localStorage.setItem("idCredencialSeleccionada",result.text);
+                        $.mobile.loading( "show", {
+                          text: "Registrando...",
+                          textVisible: true,
+                          theme: "z",
+                          html: ""
+                        });
+                        navigator.geolocation.getCurrentPosition(onSuccessScan, onError);   
+                    }
+                },
+                function (error) {
+                    console.log("Scanning failed: " + error);
+                },
+                {
+                    "preferFrontCamera" : false, // iOS and Android 
+                    "showFlipCameraButton" : true, // iOS and Android 
+                    "showTorchButton" : true, // iOS and Android 
+                    "disableAnimations" : true, // iOS 
+                    "prompt" : "", // supported on Android only 
+                    "formats" : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED 
+                    "orientation" : "landscape" // Android only (portrait|landscape), default unset so it rotates with the device 
+                }
+            );
+		}
+        // jQuery.mobile.changePage("#pageHome");
+		$("#btnScanLogin").click(function(e){
+
+			cordova.plugins.barcodeScanner.scan(
+			
+				function (result) {
+                    if(result.cancelled != true){
+                        if (navigator.onLine) {
+                            var datos = {
+                                usuario: "",
+                                clave: "",
+                                credencial: result.text,
+                                gcm_id: idToken     
+                            }
+                            $.post("http://190.60.211.17/ssca/ActionIniciarSesionMonitor.php", datos)
+                            .done(function( data ) {console.log(data)
+                                var jsonUsuario = JSON.parse(data);
+                                  
+                                if($.trim(data) != "[]" && $.trim(data) != "null"){
+                                    if($.trim(jsonUsuario[0].gcm_regid).length == 0){
+                                        $("#txtUsuario").val("");
+                                        $("#txtClave").val("");
+                                        localStorage.setItem("nombreMonitor",jsonUsuario[0].nombre);
+                                        localStorage.setItem("apellidoMonitor",jsonUsuario[0].apellido);
+                                        localStorage.setItem("direccionMonitor",jsonUsuario[0].direccion);
+                                        localStorage.setItem("telefonoMonitor",jsonUsuario[0].telefono);
+                                        localStorage.setItem("idmonitorMonitor",jsonUsuario[0].idmonitor);
+                                        localStorage.setItem("CoordenadasMonitor",jsonUsuario[0].Coordenadas);
+                                        localStorage.setItem("ImagenFotograficaMonitor",jsonUsuario[0].ImagenFotografica);
+                                        localStorage.setItem("idCredencialMonitor",jsonUsuario[0].idCredencial);
+                                        localStorage.setItem("idMonitorUsuario",jsonUsuario[0].idmonitor);
+
+                                        jQuery.mobile.changePage("#pageListadoRutas");
+                                        $("#UsuarioSesionListadoRutas").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+                                        $("#UsuarioSesionHome").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+                                        $("#UsuarioSesionListaEstudiantes").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+                                        $("#UsuarioSesionEnvioMensajes").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+                                        $("#UsuarioSesionAlertas").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+                                        var foto = "http://190.60.211.17//Fontan/" + jsonUsuario[0].ImagenFotografica;
+                                        $("#fotoHome").css({"background-image": "url(" + foto + ")"})
+                                        $("#fotoListadoEstudiantes").css({"background-image": "url(" + foto + ")"})
+                                        $("#fotoEnvioMensajes").css({"background-image": "url(" + foto + ")"})
+                                        $("#fotoHomeListadoRutas").css({"background-image": "url(" + foto + ")"})
+                                        $("#fotoAlertas").css({"background-image": "url(" + foto + ")"})
+
+                                        console.log(foto)
+
+                                        $('#listadoRutas').empty();
+                                        $.each(jsonUsuario, function(i, item) {
+                                            $('#listadoRutas').append(
+                                                '<fieldset class="ui-grid-a" style="width: 100%; border: 1px solid #1D5EB9; border-radius: 8px; margin-bottom:5px" idruta="' + jsonUsuario[i].id + '" nombreruta="' + jsonUsuario[i].nombreruta + '" latorigen="' + jsonUsuario[i].latorigen + '" longorigen="' + jsonUsuario[i].longorigen + '" latdestino="' + jsonUsuario[i].latdestino + '" longdestino="' + jsonUsuario[i].longdestino + '" id_conductor="' + jsonUsuario[i].id_conductor + '" id="item' + i + '"  iteracion="' + i + '">' +
+                                                    '<div class="ui-block-b" style="width: 85%; margin-left: 2%">' +
+                                                        '<p style="word-wrap:break-word; margin-top: 5px; font-size: 13px">' + jsonUsuario[i].nombreruta + '</p>' +
+                                                    '</div>  ' +
+                                                    '<div class="ui-block-b" style="width: 8%; margin-right: 2%; margin-top: 8px" align="right"> ' +
+                                                        '<img src="themes/images/icons-png/carat-r-black.png">' +
+                                                    '</div>' +
+                                                '</fieldset>');
+
+                                            $("#item" + i).click(function(e) {
+                                                var index = $(this).attr("iteracion");
+                                                var idruta = $("#item" + index).attr("idruta");
+                                                var id_conductor = $("#item" + index).attr("id_conductor");
+                                                var latorigen = $("#item" + index).attr("latorigen");
+                                                var longorigen = $("#item" + index).attr("longorigen");
+                                                var latdestino = $("#item" + index).attr("latdestino");
+                                                var longdestino = $("#item" + index).attr("longdestino");
+                                                
+                                                localStorage.setItem("idrutaMonitor", idruta);
+                                                localStorage.setItem("id_conductorMonitor", id_conductor);
+                                                localStorage.setItem("latorigenMonitor", latorigen);
+                                                localStorage.setItem("longorigenMonitor", longorigen);
+                                                localStorage.setItem("latdestinoMonitor", latdestino);
+                                                localStorage.setItem("longdestinoMonitor",longdestino);
+                                                
+                                                function evaluateModeOFF(mode){
+                                                    if(mode.toUpperCase() == "LOCATION_OFF"){
+                                                        var accuracyName = "High Accuracy";
+                                                        cordova.plugins.locationAccuracy.request(onRequestSuccess.bind(this, accuracyName), onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+
+                                                        function onRequestSuccess(accuracyName, success){
+                                                            jQuery.mobile.changePage("#pageHome");
+
+                                                            var idToken = localStorage.getItem("idTokenSesion");        
+                                                            //var idToken = "ACTIVA";
+                                                            var usuario = localStorage.getItem("idmonitorMonitor"); 
+                                                                   
+                                                            var datos = {
+                                                                usuario: usuario,
+                                                                gcm_id: idToken
+                                                            }
+                                                            $.post("http://190.60.211.17/ssca/ActionModificarToken.php", datos)
+                                                            .done(function( data ) {console.log(data)
+                                                                var options = { frequency: 300, enableHighAccuracy: true };
+                                                                navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                                
+                                                                watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+                                                                $( ".selector" ).loader( "hide" );
+
+                                                                interval = setInterval(function(){ 
+                                                                    if(localStorage.getItem("idrutaMonitor")){
+                                                                        function evaluateMode(mode){
+                                                                            if(mode.toUpperCase() == "LOCATION_OFF"){
+                                                                                var accuracyName = "High Accuracy";
+                                                                                function onRequestSuc(accuracyName, success){
+                                                                                    var options = { frequency: 300, enableHighAccuracy: true };
+                                                                                    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                                                    
+                                                                                    watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+                                                                                }
+                                                                                cordova.plugins.locationAccuracy.request(onRequestSuc.bind(this, accuracyName), onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+                                                                            }
+                                                                        }
+                                                                        cordova.plugins.diagnostic.getLocationMode(evaluateMode, onError);
+
+                                                                        
+                                                                    }
+                                                                }, 120000);
+
+                                                            });
+                                                        }
+
+                                                        function onRequestFailure(error){
+                                                            //onError("Accuracy request failed: error code="+error.code+"; error message="+error.message);
+                                                        }
+                                                    }else{
+                                                        jQuery.mobile.changePage("#pageHome");
+
+                                                        var idToken = localStorage.getItem("idTokenSesion");        
+                                                        //var idToken = "ACTIVA";
+                                                        var usuario = localStorage.getItem("idmonitorMonitor"); 
+                                                               
+                                                        var datos = {
+                                                            usuario: usuario,
+                                                            gcm_id: idToken
+                                                        }
+                                                        $.post("http://190.60.211.17/ssca/ActionModificarToken.php", datos)
+                                                        .done(function( data ) {console.log(data)
+                                                            var options = { frequency: 300, enableHighAccuracy: true };
+                                                            navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                            
+                                                            watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+
+                                                            interval = setInterval(function(){ 
+                                                                if(localStorage.getItem("idrutaMonitor")){
+                                                                    function evaluateMode(mode){
+                                                                        if(mode.toUpperCase() == "LOCATION_OFF"){
+                                                                            var accuracyName = "High Accuracy";
+                                                                            function onRequestSuc(accuracyName, success){
+                                                                                var options = { frequency: 300, enableHighAccuracy: true };
+                                                                                navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                                                
+                                                                                watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+                                                                            }
+                                                                            cordova.plugins.locationAccuracy.request(onRequestSuc.bind(this, accuracyName), onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+                                                                        }
+                                                                    }
+                                                                    cordova.plugins.diagnostic.getLocationMode(evaluateMode, onError);
+
+                                                                    
+                                                                }
+                                                            }, 120000);
+
+                                                        });
+                                                    }
+                                                }
+                                                cordova.plugins.diagnostic.getLocationMode(evaluateModeOFF, onError);
+
+                                                
+                                                
+                                            });
+                                        });
+                                    }else{
+                                        alertify.error("¡Usted no puede iniciar sesión. Ha iniciado sesión en otro dispositivo!");     
+                                    }
+                                }else{  
+                                    alertify.error("Usted no tiene ruta asignadas y/o los datos enviados no estan registrados en el sistema"); 
+                                }   
+                            });
+                        }else {
+                            alert('Usted no tiene conexion a internet en estos momentos. Por favor verifiquela antes de iniciar sesión.')
+                        }
+                    }
+				
+				},
+                function (error) {
+                    console.log("Scanning failed: " + error);
+                },
+                {
+                    "preferFrontCamera" : false, // iOS and Android 
+                    "showFlipCameraButton" : true, // iOS and Android 
+                    "showTorchButton" : true, // iOS and Android 
+                    "disableAnimations" : true, // iOS 
+                    "prompt" : "", // supported on Android only 
+                    "formats" : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED 
+                    "orientation" : "landscape" // Android only (portrait|landscape), default unset so it rotates with the device 
+                }
+			);
+		});
+
+		$("#btnLogin").click(function(e){
+			var usuario = $("#txtUsuario").val();
+			var clave = $("#txtClave").val();
+			var idToken = localStorage.getItem("queryUsuario");        
+			//var idToken = "ACTIVA";
+			if (navigator.onLine) {
+    			var datos = {
+    				usuario: usuario,
+    				clave: clave,
+    				credencial: "",
+    				gcm_id: idToken
+    			}
+    			$.post("http://190.60.211.17/ssca/ActionIniciarSesionMonitor.php", datos)
+    			.done(function( data ) {console.log(data)
+    				var jsonUsuario = JSON.parse(data);
+    		          
+    				if($.trim(data) != "[]" && $.trim(data) != "null"){
+                        if($.trim(jsonUsuario[0].gcm_regid).length == 0){
+        					$("#txtUsuario").val("");
+        					$("#txtClave").val("");
+        					localStorage.setItem("nombreMonitor",jsonUsuario[0].nombre);
+        					localStorage.setItem("apellidoMonitor",jsonUsuario[0].apellido);
+        					localStorage.setItem("direccionMonitor",jsonUsuario[0].direccion);
+        					localStorage.setItem("telefonoMonitor",jsonUsuario[0].telefono);
+        					localStorage.setItem("idmonitorMonitor",jsonUsuario[0].idmonitor);
+        					localStorage.setItem("CoordenadasMonitor",jsonUsuario[0].Coordenadas);
+        					localStorage.setItem("ImagenFotograficaMonitor",jsonUsuario[0].ImagenFotografica);
+        					localStorage.setItem("idCredencialMonitor",jsonUsuario[0].idCredencial);
+        					localStorage.setItem("idMonitorUsuario",jsonUsuario[0].idmonitor);
+
+        					jQuery.mobile.changePage("#pageListadoRutas");
+        					$("#UsuarioSesionListadoRutas").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+        					$("#UsuarioSesionHome").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+        					$("#UsuarioSesionListaEstudiantes").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+                            $("#UsuarioSesionEnvioMensajes").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+                            $("#UsuarioSesionAlertas").html(jsonUsuario[0].nombre + " " + jsonUsuario[0].apellido)
+        					var foto = "http://190.60.211.17//Fontan/" + jsonUsuario[0].ImagenFotografica;
+        					$("#fotoHome").css({"background-image": "url(" + foto + ")"})
+        					$("#fotoListadoEstudiantes").css({"background-image": "url(" + foto + ")"})
+        					$("#fotoEnvioMensajes").css({"background-image": "url(" + foto + ")"})
+        					$("#fotoHomeListadoRutas").css({"background-image": "url(" + foto + ")"})
+                            $("#fotoAlertas").css({"background-image": "url(" + foto + ")"})
+
+        					console.log(foto)
+
+        					$('#listadoRutas').empty();
+        					$.each(jsonUsuario, function(i, item) {
+        						$('#listadoRutas').append(
+        							'<fieldset class="ui-grid-a" style="width: 100%; border: 1px solid #1D5EB9; border-radius: 8px; margin-bottom:5px" idruta="' + jsonUsuario[i].id + '" nombreruta="' + jsonUsuario[i].nombreruta + '" latorigen="' + jsonUsuario[i].latorigen + '" longorigen="' + jsonUsuario[i].longorigen + '" latdestino="' + jsonUsuario[i].latdestino + '" longdestino="' + jsonUsuario[i].longdestino + '" id_conductor="' + jsonUsuario[i].id_conductor + '" id="item' + i + '"  iteracion="' + i + '">' +
+        								'<div class="ui-block-b" style="width: 85%; margin-left: 2%">' +
+        									'<p style="word-wrap:break-word; margin-top: 5px; font-size: 13px">' + jsonUsuario[i].nombreruta + '</p>' +
+        								'</div>  ' +
+        								'<div class="ui-block-b" style="width: 8%; margin-right: 2%; margin-top: 8px" align="right"> ' +
+        									'<img src="themes/images/icons-png/carat-r-black.png">' +
+        								'</div>' +
+        							'</fieldset>');
+
+        						$("#item" + i).click(function(e) {
+        							var index = $(this).attr("iteracion");
+        							var idruta = $("#item" + index).attr("idruta");
+        							var id_conductor = $("#item" + index).attr("id_conductor");
+        							var latorigen = $("#item" + index).attr("latorigen");
+        							var longorigen = $("#item" + index).attr("longorigen");
+        							var latdestino = $("#item" + index).attr("latdestino");
+        							var longdestino = $("#item" + index).attr("longdestino");
+        							
+        							localStorage.setItem("idrutaMonitor", idruta);
+        							localStorage.setItem("id_conductorMonitor", id_conductor);
+        							localStorage.setItem("latorigenMonitor", latorigen);
+        							localStorage.setItem("longorigenMonitor", longorigen);
+        							localStorage.setItem("latdestinoMonitor", latdestino);
+        							localStorage.setItem("longdestinoMonitor",longdestino);
+        							
+                                    function evaluateModeOFF(mode){
+                                        if(mode.toUpperCase() == "LOCATION_OFF"){
+                                            var accuracyName = "High Accuracy";
+                                            cordova.plugins.locationAccuracy.request(onRequestSuccess.bind(this, accuracyName), onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+
+                                            function onRequestSuccess(accuracyName, success){
+                                                jQuery.mobile.changePage("#pageHome");
+
+                                                var idToken = localStorage.getItem("idTokenSesion");        
+                                                //var idToken = "ACTIVA";
+                                                var usuario = localStorage.getItem("idmonitorMonitor"); 
+                                                       
+                                                var datos = {
+                                                    usuario: usuario,
+                                                    gcm_id: idToken
+                                                }
+                                                $.post("http://190.60.211.17/ssca/ActionModificarToken.php", datos)
+                                                .done(function( data ) {console.log(data)
+                                                    var options = { frequency: 300, enableHighAccuracy: true };
+                                                    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                    
+                                                    watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+                                                    $( ".selector" ).loader( "hide" );
+
+                                                    interval = setInterval(function(){ 
+                                                        if(localStorage.getItem("idrutaMonitor")){
+                                                            function evaluateMode(mode){
+                                                                if(mode.toUpperCase() == "LOCATION_OFF"){
+                                                                    var accuracyName = "High Accuracy";
+                                                                    function onRequestSuc(accuracyName, success){
+                                                                        var options = { frequency: 300, enableHighAccuracy: true };
+                                                                        navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                                        
+                                                                        watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+                                                                    }
+                                                                    cordova.plugins.locationAccuracy.request(onRequestSuc.bind(this, accuracyName), onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+                                                                }
+                                                            }
+                                                            cordova.plugins.diagnostic.getLocationMode(evaluateMode, onError);
+
+                                                            
+                                                        }
+                                                    }, 120000);
+
+                                                });
+                                            }
+
+                                            function onRequestFailure(error){
+                                                //onError("Accuracy request failed: error code="+error.code+"; error message="+error.message);
+                                            }
+                                        }else{
+                                            jQuery.mobile.changePage("#pageHome");
+
+                                            var idToken = localStorage.getItem("idTokenSesion");        
+                                            //var idToken = "ACTIVA";
+                                            var usuario = localStorage.getItem("idmonitorMonitor"); 
+                                                   
+                                            var datos = {
+                                                usuario: usuario,
+                                                gcm_id: idToken
+                                            }
+                                            $.post("http://190.60.211.17/ssca/ActionModificarToken.php", datos)
+                                            .done(function( data ) {console.log(data)
+                                                var options = { frequency: 300, enableHighAccuracy: true };
+                                                navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                
+                                                watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+
+                                                interval = setInterval(function(){ 
+                                                    if(localStorage.getItem("idrutaMonitor")){
+                                                        function evaluateMode(mode){
+                                                            if(mode.toUpperCase() == "LOCATION_OFF"){
+                                                                var accuracyName = "High Accuracy";
+                                                                function onRequestSuc(accuracyName, success){
+                                                                    var options = { frequency: 300, enableHighAccuracy: true };
+                                                                    navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+                                                                    
+                                                                    watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+                                                                }
+                                                                cordova.plugins.locationAccuracy.request(onRequestSuc.bind(this, accuracyName), onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+                                                            }
+                                                        }
+                                                        cordova.plugins.diagnostic.getLocationMode(evaluateMode, onError);
+
+                                                        
+                                                    }
+                                                }, 120000);
+
+                                            });
+                                        }
+                                    }
+                                    cordova.plugins.diagnostic.getLocationMode(evaluateModeOFF, onError);
+
+        							
+        							
+        						});
+        					});
+    					}else{
+                            alertify.error("¡Usted no puede iniciar sesión. Ha iniciado sesión en otro dispositivo!");     
+                        }
+    				}else{	
+    					alertify.error("Usted no tiene ruta asignadas y/o los enviados no estan registrados en el sistema"); 
+    				}	
+    			});
+            }else {
+                alert('Usted no tiene conexion a internet en estos momentos. Por favor verifiquela antes de iniciar sesión.')
+            }
+		})
+		
+		$("#OpcionEnvioMensajes").click(function(e){
+			var ruta = localStorage.getItem("idrutaMonitor"); 
+			var datos = {
+				idRuta: ruta	
+			}
+			$.post("http://190.60.211.17/ssca/ActionListarEstudiantesRuta.php", datos)
+			.done(function( data ) {
+                console.log(data)
+				var jsonUsuario = JSON.parse(data);
+				$("#selectEstudiante").empty();
+				if($.trim(data) != "[]" && $.trim(data) != "null"){
+					$("#selectEstudiante").html('<option value="Seleccione">Seleccione...</option>')
+					$.each(jsonUsuario, function(i, item) {
+						//localStorage.setItem("nombreMonitor",jsonUsuario[i].nombre);
+						$("#selectEstudiante").append('<option value="' + jsonUsuario[i].usuario + '">' + jsonUsuario[i].primerNombre + ' ' + jsonUsuario[i].segundoNombre + ' ' + jsonUsuario[i].primerApellido + ' ' + jsonUsuario[i].segundoApellido + '</option>');
+					});
+					$('#selectEstudiante').select('refresh');
+				}else{	
+					alertify.error("No hay datos ingresados en el sistema"); 
+				}				
+			})
+            .fail(function() {
+                alert( "error select estudiante" );
+            });
+			jQuery.mobile.changePage("#pageEnvioMensajes");	
+		});
+
+        $("#OpcionAlertas").click(function(e){            
+            jQuery.mobile.changePage("#pageAlertas"); 
+        });
+
+        var markersAlertas = [];
+        var markers = [];
+        var intervalAlertas = null;
+        var interval = null;
+        var map = null;
+        var directionsService = null;
+        var directionsDisplay = null;
+
+        $("#OpcionTracking").click(function(e){            
+            jQuery.mobile.changePage("#pageTracking"); 
+        });
+
+        $( document ).on( "pageshow", "#pageTracking", function() {
+            clearInterval(intervalAlertas);
+            directionsService = new google.maps.DirectionsService;
+            directionsDisplay = new google.maps.DirectionsRenderer;
+
+            map = new google.maps.Map(document.getElementById('map_canvas'), {
+              zoom: 6,
+              center: {lat: 41.85, lng: -87.65}
+            });
+            
+            directionsDisplay.setMap(map);
+            var ruta = localStorage.getItem("idrutaMonitor"); 
+
+            $.post("http://190.60.211.17/ssca/ActionMostrarDatosRuta.php", {idruta:ruta})
+            .done(function( data ) {
+              
+                var json = JSON.parse(data);
+
+                var CoordenadasOrigenRuta = json.latorigen + "," + json.longorigen;
+                var CoordenadasDestinoRuta = json.latdestino + "," + json.longdestino;
+
+                calculateAndDisplayRoute(directionsService, directionsDisplay, CoordenadasOrigenRuta, CoordenadasDestinoRuta);
+
+                interval = setInterval(function(){ 
+                    var ruta = localStorage.getItem("idrutaMonitor"); 
+                    MostrarBus(ruta)  
+                    mostrarAlertasRuta(ruta)
+                }, 500);  
+
+
+                mostrarAlertasRuta(ruta)
+                MostrarCoodenadasBus(ruta)
+            });
+            
+            
+
+            
+            
+        });
+
+        function MostrarCoodenadasBus(idruta){
+          var datos = {
+            idruta: idruta
+          } 
+          $.post("http://190.60.211.17/Fontan/index.php/rutas/ObtenerTodasCoordenadasBusSinFecha", datos)
+          .done(function( data ) {console.log(data)
+            //deleteMarkers();
+            if($.trim(data) != "[]"){              
+              
+              var json = JSON.parse(data);      
+              
+              for (var i = 0; i < json.length; i++) {
+                var datosBus = json[i].coordenadas_recogida;
+                var coordenadas = datosBus.split(",");
+                var lats = parseFloat(coordenadas[0]);
+                var longs = parseFloat(coordenadas[1]);; 
+
+                var latLng = new google.maps.LatLng(lats, longs);                
+
+                //creamos el marcador en el mapa
+                var marker3 = new google.maps.Marker({
+                  map: map,//el mapa creado en el paso anterior
+                  position: latLng,//objeto con latitud y longitud
+                  icon: 'themes/images/circle_yellow.png',
+                  draggable: false //que el marcador se pueda arrastrar
+                });
+                
+                //markers.push(marker);
+              }
+
+            }else{
+              
+            }
+          });
+        }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay, CoordenadasOrigenRuta, CoordenadasDestinoRuta) {
+
+          var waypts=[];
+
+          var origen = CoordenadasOrigenRuta;
+          var destino = CoordenadasDestinoRuta;
+          
+          var datos = {
+            idruta: localStorage.getItem("idrutaMonitor") 
+          } 
+          $.post("http://190.60.211.17/Fontan/index.php/rutas/ObtenerCoordenadasRuta", datos)
+          .done(function( data ) {
+            console.log(data)
+            if($.trim(data) != "[]"){
+             
+              var json = JSON.parse(data);
+              
+              $.each(json, function(i, item) {
+                var latlon = new google.maps.LatLng(json[i].latitud,json[i].longitud);
+                waypts.push({
+                  location: latlon,
+                  stopover: true
+                });
+              });
+              directionsService.route({
+                origin: origen,
+                destination: destino,
+                waypoints: waypts,
+                optimizeWaypoints: true,
+                travelMode: google.maps.TravelMode.DRIVING
+              }, 
+              function(response, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                  directionsDisplay.setDirections(response);
+                  var route = response.routes[0];
+                  
+                } else {
+                  window.alert('No se encuentra la direccion ' + status);
+                }
+              });
+              console.log(origen + " " + destino)
+
+            }
+          });
+        }
+
+        function mostrarAlertasRuta(idruta){
+          
+          var datos = {
+            idruta: idruta
+          } 
+          $.post("http://190.60.211.17/Fontan/index.php/rutas/mostrarAlertasRuta", datos)
+          .done(function( data ) {console.log(data)
+            deleteMarkersAlertas();
+            if($.trim(data) != "[]"){           
+              
+              var json = JSON.parse(data);      
+              
+              for (var i = 0; i < json.length; i++) {
+                var datosBus = json[i].coordenadas_recogida;
+                var coordenadas = datosBus.split(",");
+                var lats = parseFloat(coordenadas[0]);
+                var longs = parseFloat(coordenadas[1]);
+                var icono = "";
+                var latLng = new google.maps.LatLng(lats, longs);
+                //console.log(json[i].mensaje)
+                switch(json[i].mensaje){
+                  case "ALERTA DE ACCIDENTE":
+                    icono = "themes/images/AlertaAccidente.png";
+                    break;
+                  case "INCIDENTE MECANICO":
+                    icono = "themes/images/AlertaFallaMecanica.png";
+                    break;
+                  case "TRÁFICO LENTO":
+                    icono = "themes/images/AlertaTraficoLento.png";
+                    break;
+                  case "DAÑO DE NEUMATICO":
+                    icono = "themes/images/AlertaDanoNeumatico.png";
+                    break;
+                }
+
+                //creamos el marcador en el mapa
+                var marker2 = new google.maps.Marker({
+                  map: map,//el mapa creado en el paso anterior
+                  position: latLng,//objeto con latitud y longitud
+                  icon: icono,
+                  draggable: false //que el marcador se pueda arrastrar
+                });
+                
+                markersAlertas.push(marker2);
+                attachSecretMessage(marker2, json[i].hora);
+                
+              }
+              
+              
+            }else{
+              
+            }
+          });
+        }
+        // Attaches an info window to a marker with the provided message. When the
+        // marker is clicked, the info window will open with the secret message.
+        function attachSecretMessage(marker, secretMessage) {
+          var infowindow = new google.maps.InfoWindow({
+            content: secretMessage
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(marker.get('map_canvas'), marker);
+          });
+        }
+
+        function MostrarBus(idruta){
+          var datos = {
+            idruta: idruta
+          } 
+          $.post("http://190.60.211.17/Fontan/index.php/rutas/ObtenerCoordenadasBus", datos)
+          .done(function( data ) {console.log(data)
+            deleteMarkers();
+            if($.trim(data) != "[]"){
+              var json = JSON.parse(data);      
+              
+              var datosBus = json[0].coordenadas_recogida;
+              var coordenadas = datosBus.split(",");
+              var lats = parseFloat(coordenadas[0]);
+              var longs = parseFloat(coordenadas[1]);; 
+
+              var latLng = new google.maps.LatLng(lats, longs);
+
+              //Definimos algunas opciones del mapa a crear
+              var myOptions = {
+                center: latLng,//centro del mapa
+                zoom: 15,//zoom del mapa
+                mapTypeId: google.maps.MapTypeId.ROADMAP //tipo de mapa, carretera, híbrido,etc
+              };
+
+              //creamos el marcador en el mapa
+              marker = new google.maps.Marker({
+                map: map,//el mapa creado en el paso anterior
+                position: latLng,//objeto con latitud y longitud
+                icon: 'themes/images/icon-bus.png',
+                draggable: false //que el marcador se pueda arrastrar
+              });
+              
+              markers.push(marker);
+
+            }else{
+              
+            }
+          });
+        }
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+          for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+          }
+        }
+
+        // Sets the map on all markers in the array.
+        function setMapOnAllAlertas(map) {
+          for (var i = 0; i < markersAlertas.length; i++) {
+            markersAlertas[i].setMap(map);
+          }
+        }
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+          setMapOnAll(null);
+        }
+
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkersAlertas() {
+          setMapOnAllAlertas(null);
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkers() {
+          clearMarkers();
+          markers = [];
+        }
+
+        // Deletes all markers in the array by removing references to them.
+        function deleteMarkersAlertas() {
+          clearMarkersAlertas();
+          markersAlertas = [];
+        }
+
+        $(".OpcionAlertas").click(function(e){
+            var mensaje = $(this).find("font b").html();
+            
+            localStorage.setItem("mensajeSelect", mensaje);
+            $.mobile.loading( "show", {
+              text: "Registrando...",
+              textVisible: true,
+              theme: "z",
+              html: ""
+            });
+            navigator.geolocation.getCurrentPosition(onSuccessAlerta, onError);   
+        })
+
+		$(".opcionEnvioMensajes").click(function(e){			
+			if($(this).attr("bloqueado") == "no"){
+				var estudiante = $("#selectEstudiante").val();
+				var mensaje = $(this).find("font b").html();
+				var idRuta = localStorage.getItem("idrutaMonitor"); 
+				
+				var datos = {
+					idestudiante: estudiante,
+					idruta: idRuta,
+					message: mensaje
+				}
+				$.post( "http://190.60.211.17/push/ActionEnviarMensajeEstudiante.php", datos)
+				.done(function( data ) {
+					console.log( data );
+					alertify.alert("Mensaje Enviado", function(e){
+						var estudiante = $("#selectEstudiante").val();
+						var datos = {
+							idestudiante: estudiante
+						}
+						$.post( "http://190.60.211.17/ssca/ActionConsultarAlertas.php", datos)
+						.done(function( data ) {
+							console.log( data );
+							var json = JSON.parse(data);
+							if(json[0].resultadoLlego == "0"){
+								$("#opcionLlegado").css({"opacity":"1"})
+								$("#opcionLlegado").attr("bloqueado", "no")
+
+								$("#opcionEspera").css({"opacity":"0.6"})
+								$("#opcionEspera").attr("bloqueado", "si")
+
+								$("#opcionPartido").css({"opacity":"0.6"})
+								$("#opcionPartido").attr("bloqueado", "si")
+							}else{
+								if(json[0].resultadoEspera == "0"){
+									$("#opcionLlegado").css({"opacity":"0.6"})
+									$("#opcionLlegado").attr("bloqueado", "si")
+
+									$("#opcionEspera").css({"opacity":"1"})
+									$("#opcionEspera").attr("bloqueado", "no")
+
+									$("#opcionPartido").css({"opacity":"0.6"})
+									$("#opcionPartido").attr("bloqueado", "si")
+								}else{
+									$("#opcionLlegado").css({"opacity":"0.6"})
+									$("#opcionLlegado").attr("bloqueado", "si")
+
+									$("#opcionEspera").css({"opacity":"0.6"})
+									$("#opcionEspera").attr("bloqueado", "si")
+
+									$("#opcionPartido").css({"opacity":"1"})
+									$("#opcionPartido").attr("bloqueado", "no")
+								}
+							}
+						});
+					});
+				});
+			}			
+		});
+
+		$("#selectEstudiante").change(function(e){
+			if($(this).val() == "Seleccione"){
+				$("#opcionLlegado").css({"opacity":"0.6"})
+				$("#opcionLlegado").attr("bloqueado", "si")
+
+				$("#opcionEspera").css({"opacity":"0.6"})
+				$("#opcionEspera").attr("bloqueado", "si")
+
+				$("#opcionPartido").css({"opacity":"0.6"})
+				$("#opcionPartido").attr("bloqueado", "si")
+			}else{
+				var estudiante = $(this).val();
+				var datos = {
+					idestudiante: estudiante
+				}
+				$.post( "http://190.60.211.17/ssca/ActionConsultarAlertas.php", datos)
+				.done(function( data ) {
+					console.log( data );
+					var json = JSON.parse(data);
+					if(json[0].resultadoLlego == "0"){
+						$("#opcionLlegado").css({"opacity":"1"})
+						$("#opcionLlegado").attr("bloqueado", "no")
+
+						$("#opcionEspera").css({"opacity":"0.6"})
+						$("#opcionEspera").attr("bloqueado", "si")
+
+						$("#opcionPartido").css({"opacity":"0.6"})
+						$("#opcionPartido").attr("bloqueado", "si")
+					}else{
+						if(json[0].resultadoEspera == "0"){
+							$("#opcionLlegado").css({"opacity":"0.6"})
+							$("#opcionLlegado").attr("bloqueado", "si")
+
+							$("#opcionEspera").css({"opacity":"1"})
+							$("#opcionEspera").attr("bloqueado", "no")
+
+							$("#opcionPartido").css({"opacity":"0.6"})
+							$("#opcionPartido").attr("bloqueado", "si")
+						}else{
+							$("#opcionLlegado").css({"opacity":"0.6"})
+							$("#opcionLlegado").attr("bloqueado", "si")
+
+							$("#opcionEspera").css({"opacity":"0.6"})
+							$("#opcionEspera").attr("bloqueado", "si")
+
+							$("#opcionPartido").css({"opacity":"1"})
+							$("#opcionPartido").attr("bloqueado", "no")
+						}
+					}
+				});
+				
+			}
+		});
+
+		$("#OpcionLista").click(function(e){
+			
+
+			var ruta = localStorage.getItem("idrutaMonitor"); 
+			var date = new Date();
+			var dia = date.getDate();
+			var mes = (date.getMonth() + 1);
+			var year = date.getFullYear();
+			
+			if(dia < 10) {
+				dia = '0' + dia;
+			} 
+			
+			if(mes < 10) {
+				mes = '0' + mes;
+			} 
+			
+			var fechaActual = year + "-" + mes + "-" + dia;
+			var datos = {
+				idRuta: ruta,
+				fecha: fechaActual
+			}
+			$.post("http://190.60.211.17/ssca/ActionListarEstudiantesRuta.php", datos)
+			.done(function( data ) {console.log(data)
+				var jsonUsuario = JSON.parse(data);
+			
+				$('#listadoEstudiantes').empty();
+				$.each(jsonUsuario, function(i, item) {
+					if(jsonUsuario[i].mensajes.length > 0){
+						if(i == 0){
+							$('#listadoEstudiantes').append(
+								'<a href="#pagetwo" data-rel="dialog" style="text-decoration: none; color:#FFF" id="itemLista' + i + '">' +
+									'<fieldset class="ui-grid-a" style="width: 100%; border: 1px solid #1D5EB9; border-radius: 8px;background-color:#F90">' +
+									
+										'<div class="ui-block-a" style="width: 30%" align="center">' +
+											'<img src="http://190.60.211.17//Fontan/' + jsonUsuario[i].ImagenFotografica + '" width="98%">' +
+										'</div>' +
+										
+										'<div class="ui-block-b" style="width: 58%; margin-left: 2%">' +
+											'<p style="word-wrap:break-word; margin-top: 5px; font-size: 13px">' +
+												'' + jsonUsuario[i].primerNombre + ' ' + jsonUsuario[i].segundoNombre + '<br>' + jsonUsuario[i].primerApellido + ' ' + jsonUsuario[i].segundoApellido + '<br>' +
+												'<b>Dirección:</b> ' + jsonUsuario[i].direccion + '<br>' +
+												'<b>Teléfonos:</b> ' + jsonUsuario[i].telefono1 + ' - ' + jsonUsuario[i].telefono2 + '<br>' +
+												'<b>Tipo de ID:</b>  ' + jsonUsuario[i].tipoId + '<br>' +
+												'<b>Numero ID:</b> ' + jsonUsuario[i].numeroId + '<br>' +
+											'</p>' +
+										'</div>  ' +
+										'<div class="ui-block-b" style="width: 8%; margin-right: 2%; margin-top: 18%" align="right"> ' +
+											'<img src="themes/images/icons-png/carat-r-white.png">' +
+										'</div>' +
+										
+										'</fieldset>' + 
+								'</a>');
+						}else{
+							$('#listadoEstudiantes').append(
+								'<a href="#pagetwo" data-rel="dialog" style="text-decoration: none; color:#FFF; margin-top: 8px" id="itemLista' + i + '">' +
+									'<fieldset class="ui-grid-a" style="width: 100%; border: 1px solid #1D5EB9; border-radius: 8px;background-color:#F90">' +
+									
+										'<div class="ui-block-a" style="width: 30%" align="center">' +
+											'<img src="http://190.60.211.17//Fontan/' + jsonUsuario[i].ImagenFotografica + '" width="98%">' +
+										'</div>' +
+										
+										'<div class="ui-block-b" style="width: 58%; margin-left: 2%">' +
+											'<p style="word-wrap:break-word; margin-top: 5px; font-size: 13px">' +
+												'' + jsonUsuario[i].primerNombre + ' ' + jsonUsuario[i].segundoNombre + '<br>' + jsonUsuario[i].primerApellido + ' ' + jsonUsuario[i].segundoApellido + '<br>' +
+												'<b>Dirección:</b> ' + jsonUsuario[i].direccion + '<br>' +
+												'<b>Teléfonos:</b> ' + jsonUsuario[i].telefono1 + ' - ' + jsonUsuario[i].telefono2 + '<br>' +
+												'<b>Tipo de ID:</b>  ' + jsonUsuario[i].tipoId + '<br>' +
+												'<b>Numero ID:</b> ' + jsonUsuario[i].numeroId + '<br>' +
+											'</p>' +
+										'</div>  ' +
+										'<div class="ui-block-b" style="width: 8%; margin-right: 2%; margin-top: 18%" align="right"> ' +
+											'<img src="themes/images/icons-png/carat-r-white.png">' +
+										'</div>' +
+										
+										'</fieldset>' + 
+								'</a>');
+						}
+						$("#itemLista" + i).click(function(e) {
+							$("#listadoMensajesUsuario").empty();
+							for(iter = 0; iter < jsonUsuario[i].mensajes.length; iter++){
+								$("#listadoMensajesUsuario").append("<p><b>Mensaje: </b>" + jsonUsuario[i].mensajes[iter].mensaje + "</p><br>");
+							}
+	                    });
+						
+						/*$('#listadoEstudiantes').append(
+							'<li id="itemLista' + i + '">'  +
+							'<a href="#myPopup" data-rel="popup" style="background-color:#F90">' +
+							'<img src="http://190.60.211.17//Fontan/' + jsonUsuario[i].ImagenFotografica + '" style="margin-top:20px; margin-left:10px" width="80"/>' +
+							'<h3 class="ui-li-heading" style="0px; margin-top:0px; color: #FFF">' + jsonUsuario[i].primerNombre + ' ' + jsonUsuario[i].segundoNombre + '<br>' + jsonUsuario[i].primerApellido + ' ' + jsonUsuario[i].segundoApellido + '</h3>' +
+							'<p class="ui-li-desc" style="margin-left:0px">' +
+								'<strong style="color:#FFF">Direccion: ' + jsonUsuario[i].direccion + '</strong><br>' +
+								'<strong style="color:#FFF">Teléfonos: ' + jsonUsuario[i].telefono1 + ' - ' + jsonUsuario[i].telefono2 + '</strong><br>' +
+								'<strong style="color:#FFF">Tipo de ID: ' + jsonUsuario[i].tipoId + '</strong><br>' +
+								'<strong style="color:#FFF">Numero ID: ' + jsonUsuario[i].numeroId + '</strong>' +
+							'</p>' +
+							'</a>' +
+							'</li>'
+						);
+						$("#itemLista" + i).click(function(e) {
+							$("#listadoMensajesUsuario").empty();
+	                        for(iter = 0; iter < jsonUsuario[i].mensajes.length; iter++){
+								$("#listadoMensajesUsuario").append("<p><b>Mensaje: </b>" + jsonUsuario[i].mensajes[iter].mensaje + "</p><br>");
+							}
+	                    });*/
+					}else{
+						if(i == 0){
+							$('#listadoEstudiantes').append('<fieldset class="ui-grid-a" style="width: 100%; border: 1px solid #1D5EB9; border-radius: 8px;" id="itemLista' + i + '">' +
+								'<div class="ui-block-a" style="width: 30%" align="center">' +
+									'<img src="http://190.60.211.17//Fontan/' + jsonUsuario[i].ImagenFotografica + '" width="98%">' +
+								'</div>' +
+								
+								'<div class="ui-block-b" style="width: 58%; margin-left: 2%">' +
+									'<p style="word-wrap:break-word; margin-top: 5px; font-size: 13px">' +
+										'' + jsonUsuario[i].primerNombre + ' ' + jsonUsuario[i].segundoNombre + '<br>' + jsonUsuario[i].primerApellido + ' ' + jsonUsuario[i].segundoApellido + '<br>' +
+										'<b>Dirección:</b> ' + jsonUsuario[i].direccion + '<br>' +
+										'<b>Teléfonos:</b> ' + jsonUsuario[i].telefono1 + ' - ' + jsonUsuario[i].telefono2 + '<br>' +
+										'<b>Tipo de ID:</b>  ' + jsonUsuario[i].tipoId + '<br>' +
+										'<b>Numero ID:</b> ' + jsonUsuario[i].numeroId + '<br>' +
+									'</p>' +
+								'</div>  ' +
+								'<div class="ui-block-b" style="width: 8%; margin-right: 2%; margin-top: 18%" align="right"> ' +
+									'<img src="themes/images/icons-png/carat-r-black.png">' +
+								'</div>' +
+							'</fieldset>');
+						}else{
+							$('#listadoEstudiantes').append('<fieldset class="ui-grid-a" style="width: 100%; border: 1px solid #1D5EB9; border-radius: 8px; margin-top: 8px" id="itemLista' + i + '">' +
+								'<div class="ui-block-a" style="width: 30%" align="center">' +
+									'<img src="http://190.60.211.17//Fontan/' + jsonUsuario[i].ImagenFotografica + '" width="98%">' +
+								'</div>' +
+								
+								'<div class="ui-block-b" style="width: 58%; margin-left: 2%">' +
+									'<p style="word-wrap:break-word; margin-top: 5px; font-size: 13px">' +
+										'' + jsonUsuario[i].primerNombre + ' ' + jsonUsuario[i].segundoNombre + '<br>' + jsonUsuario[i].primerApellido + ' ' + jsonUsuario[i].segundoApellido + '<br>' +
+										'<b>Dirección:</b> ' + jsonUsuario[i].direccion + '<br>' +
+										'<b>Teléfonos:</b> ' + jsonUsuario[i].telefono1 + ' - ' + jsonUsuario[i].telefono2 + '<br>' +
+										'<b>Tipo de ID:</b>  ' + jsonUsuario[i].tipoId + '<br>' +
+										'<b>Numero ID:</b> ' + jsonUsuario[i].numeroId + '<br>' +
+									'</p>' +
+								'</div>  ' +
+								'<div class="ui-block-b" style="width: 8%; margin-right: 2%; margin-top: 18%" align="right"> ' +
+									'<img src="themes/images/icons-png/carat-r-black.png">' +
+								'</div>' +
+							'</fieldset>');
+						}
+						
+					}
+					
+				});
+			});
+			jQuery.mobile.changePage("#pageListado");	
+		})
+        
+        function onSuccessAlerta(position) {
+            //alert(JSON.stringify(position))
+            if(localStorage.getItem("idrutaMonitor")){
+                var mensaje = localStorage.getItem("mensajeSelect"); 
+                var usuario = localStorage.getItem("idmonitorMonitor"); 
+                var idRuta = localStorage.getItem("idrutaMonitor"); 
+                //alert(mensaje)
+                var datos = {
+                    idRuta: idRuta,
+                    message: mensaje,
+                    usuario: usuario,
+                    latitud: position.coords.latitude,
+                    longitud: position.coords.longitude      
+                }
+
+                $.post( "http://190.60.211.17/ssca/ActionInsertarAlertaAppMonitor.php", datos)
+                .done(function( data ) {
+                    console.log( data );
+                    localStorage.removeItem("mensajeSelect");
+                    if($.trim(data) == "1"){
+                        $.mobile.loading( "hide" );
+                        alertify.alert("¡Alerta registrada con exito!", function(){
+                        });         
+                    }
+                })
+                .fail(function(error) {
+                    if(! navigator.onLine) {
+                        var $_datos = datos;
+                        var $_data = localStorage.getItem('offLineData');  
+                        $_storage = [];
+                        var $_requets_to_save = {
+                            uri: 'http://190.60.211.17/ssca/ActionInsertarAlertaAppMonitor.php',
+                            data: $_datos 
+                        };
+
+                        if($_data != null) {
+                            $_storage = JSON.parse($_data);
+                        }
+                        
+                        $_storage.push($_requets_to_save);
+                        $_storage = JSON.stringify($_storage);
+                        localStorage.setItem('offLineData', $_storage);
+                        $.mobile.loading( "hide" );
+                        alertify.alert('Datos guardados offline');
+                    }else{
+                        alertify.alert('Lo sentimos, no se pudo procesar tu solicitud. \nPrueba de nuevo.')
+                    }
+                });
+            }
+        }
+    
+		function onSuccess(position) {
+	        if(localStorage.getItem("idrutaMonitor")){
+		        var date = new Date();
+				var dia = date.getDate();
+				var mes = (date.getMonth() + 1);
+				var year = date.getFullYear();
+				
+				if(dia < 10) {
+					dia = '0' + dia;
+				} 
+				
+				if(mes < 10) {
+					mes = '0' + mes;
+				} 
+				
+				var fechaActual = year + "-" + mes + "-" + dia;
+				var horaActual = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); 
+				var idRuta = localStorage.getItem("idrutaMonitor"); 
+				var idmonitorMonitor = localStorage.getItem("idmonitorMonitor"); 
+				//alert("Latitud: " + latitud + "\nLongitud: " + longitud + "\nFecha: " + fechaActual + "\nHora: " + horaActual + "\nRuta: " + idRuta + "\nMonitor: " + idmonitorMonitor);
+				var datosUsuario = {
+					idUsuario: idmonitorMonitor,
+					fecha: fechaActual,
+					idRuta: idRuta,
+					hora: horaActual,
+					latitud: position.coords.latitude,
+					longitud: position.coords.longitude
+				}
+				$.post( "http://190.60.211.17/ssca/ActionInsertarGeolocalizacion.php", datosUsuario)
+				.done(function( dataResultado ) {console.log(dataResultado)
+					
+				});
+
+				var datosMensaje = {
+					idruta: idRuta,
+					latOrigen: position.coords.latitude,
+					lonOrigen: position.coords.longitude
+				}
+				$.post( "http://190.60.211.17//push/ActionEnviarMensajeCercania.php", datosMensaje)
+				.done(function( dataResultado ) {
+					console.log(dataResultado);
+				}); 
+				//initMap(position.coords.latitude, position.coords.longitude);
+			}
+	    }
+
+	    /*function initMap(latitud, longitud) {
+			var directionsService = new google.maps.DirectionsService;
+			var directionsDisplay = new google.maps.DirectionsRenderer;
+			//calculateAndDisplayRoute(directionsService, directionsDisplay, latitud, longitud);
+			
+			
+			
+		}*/
+
+	/*function calculateAndDisplayRoute(directionsService, directionsDisplay, latitud, longitud) {
+		var waypts = [];
+		var origen = latitud + ',' + longitud;
+		//var destino = '10.389127, -75.476244';
+		var date = new Date();
+		var dia = date.getDate();
+		var mes = (date.getMonth() + 1);
+		var year = date.getFullYear();
+		
+		if(dia < 10) {
+			dia = '0' + dia;
+		} 
+		
+		if(mes < 10) {
+			mes = '0' + mes;
+		} 
+		
+		var horaActual = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); 
+		var fechaActual = year + "-" + mes + "-" + dia;
+		
+		var idRuta = localStorage.getItem("idrutaMonitor"); 
+		
+		var datos = {
+			idRuta: idRuta,
+			fecha: fechaActual
+		}
+		console.log( origen );
+		//console.log( data );
+		$.post( "http://190.60.211.17/ssca/ActionMostrarCoordenadasProximo.php", datos)
+		.done(function( data ) {
+			console.log( data );
+			if($.trim(data) != "[]"){
+				var jsonDatos = JSON.parse(data);
+				directionsService.route({
+					origin: origen,
+					destination: jsonDatos[0].Coordenadas,
+					waypoints: waypts, 
+					optimizeWaypoints: true,
+					travelMode: google.maps.TravelMode.DRIVING,
+					unitSystem: google.maps.UnitSystem.METRIC
+				}, function(response, status) {
+					if (status === google.maps.DirectionsStatus.OK) {
+						//directionsDisplay.setDirections(response);
+						var route = response.routes[0];
+						
+						for (var i = 0; i < route.legs.length; i++) {
+							var routeSegment = i + 1;
+							/*summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+								'</b><br>';
+							summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+							summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+							summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';*/
+							
+							//var km = route.legs[i].distance.text.substr(0,(route.legs[i].distance.text.length - 3));
+							/*var km = route.legs[i].distance.value;
+							//var tipoDistancia = route.legs[i].distance.text.substr((route.legs[i].distance.text.length - 3),(route.legs[i].distance.text.length - 3));
+							//km=km.replace(new RegExp(",","g") ,"");
+							km = parseFloat(km);
+							/*var posicionKm = route.legs[i].distance.text.indexOf(' km');
+							var posicionm = route.legs[i].distance.text.indexOf(' m');
+							
+							//console.log(route.legs[i].distance.text + " - " + km)
+							//console.log(km + " " + JSON.stringify(route.legs[i]))
+							console.log(posicionKm + " : " + posicionm + " " + route.legs[i].distance.text + " " + route.legs[i].distance.value + " " + km)*/
+							/*console.log(km + " ANTES");
+							if(km <= 500){
+								console.log(km);
+								var date = new Date();
+								var dia = date.getDate();
+								var mes = (date.getMonth() + 1);
+								var year = date.getFullYear();
+								
+								if(dia < 10) {
+									dia = '0' + dia;
+								} 
+								
+								if(mes < 10) {
+									mes = '0' + mes;
+								} 
+								
+								var horaActual = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(); 
+								var fechaActual = year + "-" + mes + "-" + dia;
+								
+								var mensajeEnviar = "El bus esta cerca de sus casa. Se encuentra a " + route.legs[i].distance.value + " metros y llegara a proximadamente en " + route.legs[i].distance.text;
+								var datosUsuario = {
+									idestudiante: jsonDatos[0].idUsuario,
+									fecha: fechaActual,
+									idruta: idRuta,
+									regId: jsonDatos[0].gcm_regid,
+									coordenadas: jsonDatos[0].Coordenadas,
+									horaActual: horaActual,
+									distancia: route.legs[i].distance.text,
+									tiempoLlegada: route.legs[i].distance.text
+								}
+								$.post( "http://190.60.211.17//push/ActionEnviarMensajeCercania.php", datosUsuario)
+								.done(function( dataResultado ) {
+									console.log(dataResultado);
+								});
+								
+								
+							}
+							
+						}
+					} else {
+						//window.alert('Directions request failed due to ' + status);
+					}
+				});
+			}
+		});
+		//var destino = EnviarDatosWebService(datos, "http://190.60.211.17/ssca/ActionMostrarCoordenadasProximo.php");
+		
+		
+		
+	}*/
+		function onSuccessScan(position) {        
+			
+			var idRuta = localStorage.getItem("idrutaMonitor"); 
+			var opcion = localStorage.getItem("opcion"); 
+			var idCredencial = localStorage.getItem("idCredencialSeleccionada");  
+
+			var datos = {
+				latitud: position.coords.latitude,
+				longitud: position.coords.longitude,
+				idCredencial: idCredencial,
+				tipo: opcion,
+				idRuta: idRuta		
+			}
+			$.post( "http://190.60.211.17/Fontan/index.php/rutas/RegistroRecogida", datos)
+			.done(function( data ) {
+				console.log( data );
+				if($.trim(data) != "[]"){
+					var jsonResultado = JSON.parse(data);
+					$.mobile.loading( "hide" );
+					if($.trim(jsonResultado[0].CodigoConfirmacion) == "1"){
+						alertify.alert("Registrado(a) " + jsonResultado[0].PrimerNombre + ' ' + jsonResultado[0].PrimerApellido, function(){
+		                    var opcion = localStorage.getItem("opcion"); 
+							Escanear(opcion);
+	                  	});
+					}else{
+
+						alertify.alert(jsonResultado[0].Mensaje + "", function(){
+		                    var opcion = localStorage.getItem("opcion"); 
+							Escanear(opcion);
+	                  	});						
+					}					
+				}else{
+					alertify.alert("La credencial no esta registrada en el sistema", function(){
+	                    var opcion = localStorage.getItem("opcion"); 
+						Escanear(opcion);
+                  	});				
+
+				}
+			})
+            .fail(function(error) {
+                if(! navigator.onLine) {
+                    var $_datos = datos;
+                    var $_data = localStorage.getItem('offLineData');  
+                    $_storage = [];
+                    var $_requets_to_save = {
+                        uri: 'http://190.60.211.17/Fontan/index.php/rutas/RegistroRecogida',
+                        data: $_datos 
+                    };
+
+                    if($_data != null) {
+                        $_storage = JSON.parse($_data);
+                    }
+                    
+                    $_storage.push($_requets_to_save);
+                    $_storage = JSON.stringify($_storage);
+                    localStorage.setItem('offLineData', $_storage);
+                    $.mobile.loading( "hide" );
+                    alertify.alert('Datos guardados offline');
+                }else{
+                    alertify.alert('Lo sentimos, no se pudo procesar tu solicitud. \nPrueba de nuevo.')
+                }
+            });
+        }
+
+	    // La función 'callback' onError recibe un objeto `PositionError`.
+	    //
+	    function onError(error) {
+	        alert('código: '    + error.code    + '\n' +
+	              'mensaje: ' + error.message + '\n');
+	    }
+
+	   	
+    </script>
+
+    <!-- ==========================================  -->
+    <!--              SAVE DATA OFFLINE              -->
+    <!-- ==========================================  -->
+    <script src="themes/offlineManager.js"></script>
+
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIJhwAnBcf7HiAk8mhenonqyOyXrmwh3g&callback="
+        async defer></script>
+</body>
+</html>
